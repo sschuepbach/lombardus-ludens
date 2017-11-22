@@ -3,7 +3,7 @@ import { RetrieveDataService } from '../retrieve-data.service';
 import { FormControl } from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/switchMap';
-import { Commentator } from '../models/commentator';
+import { Commentator } from '../../models/commentator';
 
 
 @Component({

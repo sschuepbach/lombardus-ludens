@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CoreRoutingModule } from './core-routing.module';
+import { SearchModule} from '../search/search.module';
 
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { CoreRoutingModule } from './core-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    CoreRoutingModule
+    CoreRoutingModule,
+    SearchModule
   ],
   declarations: [
     HeaderComponent,

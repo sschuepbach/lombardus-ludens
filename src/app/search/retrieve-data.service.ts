@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
-import { MapResultToModelService } from './models/map-result-to-model.service';
+import { MapResultToModelService } from '../models/map-result-to-model.service';
 
 @Injectable()
 export class RetrieveDataService {
