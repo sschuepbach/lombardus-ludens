@@ -23,7 +23,7 @@ export class SearchfieldComponent implements OnInit {
       .switchMap(searchString => retrieveData.getData(searchString))
       .subscribe(
         res => {console.log(res); return this.emitResultArray(res);},
-        err => { console.log("Error!")},
+        err => { console.log('Error!')},
         () => console.log('Results retrieved')
       );
   }
