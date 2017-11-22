@@ -11,9 +11,9 @@ export class MapResultToModelService {
   }
 
   parseResult(res: any) {
-    const parsedResults = Array<Commentator>();
-    for (const r of res[ 'hits' ][ 'hits' ]) {
-      parsedResults.push(new Commentator().deserialise(r['_source']));
+    const parsedResults: Commentator[] = [];
+    for (const r of res['commentators']) {
+      parsedResults.push(new Commentator().deserialise(r));
     }
     return parsedResults;
   }

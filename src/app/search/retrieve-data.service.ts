@@ -10,7 +10,7 @@ export class RetrieveDataService {
 
   getData(searchTerm: string) {
     return this.http
-      .get('http://localhost:9200/test/test/_search?q=' + searchTerm)
+      .get('https://rcs.philsem.unibas.ch/json/' + searchTerm)
       .map(res => this.mrtm.parseResult(res));
   }
 
