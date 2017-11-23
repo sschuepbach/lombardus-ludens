@@ -3,6 +3,7 @@ import { RetrieveDataService } from '../retrieve-data.service';
 import { FormControl } from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/filter';
 import { MapResultToModelService } from '../../models/map-result-to-model.service';
 import { ResultStreamerService } from '../result-streamer.service';
 
@@ -21,6 +22,7 @@ export class SearchfieldComponent implements OnInit {
               private rs: ResultStreamerService) {
     this.searchInput
       .valueChanges
+      .filter(x => x.length >= 3)
       .debounceTime(500)
       .switchMap(searchString => retrieveData.getData(searchString))
       .subscribe(
