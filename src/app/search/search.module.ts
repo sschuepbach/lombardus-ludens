@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SearchfieldComponent } from './searchfield/searchfield.component';
 import { RetrieveDataService } from './retrieve-data.service';
 import { MapResultToModelService } from '../models/map-result-to-model.service';
+import { CounterService } from './counter.service';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { MapResultToModelService } from '../models/map-result-to-model.service';
   providers: [
     RetrieveDataService,
     MapResultToModelService
+    CounterService
   ],
   exports: [ SearchfieldComponent ]
 })
