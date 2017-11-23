@@ -1,0 +1,12 @@
+<h2>List of commentators</h2>
+<h3>Aggregations</h3>
+<ul>
+  <li *ngFor="let a of (count ? count.affiliations : [])">{{a.key}}: {{a.value}}</li>
+</ul>
+<h3>Results</h3>
+<mat-list>
+  <mat-list-item *ngFor="let c of results">
+    <h4 mat-line>{{c.name}}</h4>
+    <p mat-line>{{c.period}}</p>
+  </mat-list-item>
+</mat-list>
