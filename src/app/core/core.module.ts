@@ -6,12 +6,14 @@ import { SearchModule} from '../search/search.module';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MainComponent } from './main/main.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
     CommonModule,
     CoreRoutingModule,
-    SearchModule
+    SearchModule,
+    NgbModule.forRoot()
   ],
   declarations: [
     HeaderComponent,
