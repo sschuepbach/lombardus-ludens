@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from '../material.module';
 
 import { SearchfieldComponent } from './searchfield/searchfield.component';
 import { RetrieveDataService } from './retrieve-data.service';
@@ -16,7 +16,8 @@ import { CounterService } from './counter.service';
   imports: [
     CommonModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule
   ],
   declarations: [ SearchfieldComponent, ResultsAsTextComponent, FilterComponent ],
   providers: [
