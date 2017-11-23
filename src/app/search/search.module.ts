@@ -11,6 +11,7 @@ import { CookieInterceptorService } from './cookie-interceptor.service';
 import { ResultStreamerService } from './result-streamer.service';
 import { ResultsAsTextComponent } from './results-as-text/results-as-text.component';
 import { CounterService } from './counter.service';
+import { FilterComponent } from './filter/filter.component';
 
 @NgModule({
   imports: [
@@ -22,7 +23,13 @@ import { CounterService } from './counter.service';
   declarations: [ SearchfieldComponent, ResultsAsTextComponent, FilterComponent ],
   providers: [
     RetrieveDataService,
-    MapResultToModelService
+    MapResultToModelService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CookieInterceptorService,
+      multi: true
+    },
+    ResultStreamerService,
     CounterService
   ],
   exports: [
