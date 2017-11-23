@@ -4,7 +4,7 @@ import { Serialisable } from './serialisable';
 export class Commentator implements Serialisable<Commentator> {
   oid: number;
   name: string;
-  affiliation: string[];
+  affiliations: string[];
   period: string;
   description: string;
   commentaries: Commentary[] = [];
@@ -12,7 +12,7 @@ export class Commentator implements Serialisable<Commentator> {
   deserialise(input: any) {
     this.oid = input.oid;
     this.name = input.name;
-    this.affiliation = input.affiliation;
+    this.affiliations = input.affiliations;
     this.period = input.period;
     this.description = input.description;
     for (const c of input.commentaries) {
