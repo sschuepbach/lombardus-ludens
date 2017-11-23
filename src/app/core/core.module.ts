@@ -5,6 +5,7 @@ import { SearchModule} from '../search/search.module';
 
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { MainComponent } from './main/main.component';
 
 @NgModule({
   imports: [
@@ -14,11 +15,13 @@ import { FooterComponent } from './footer/footer.component';
   ],
   declarations: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    MainComponent
   ],
   exports: [
+    FooterComponent,
     HeaderComponent,
-    FooterComponent
+    MainComponent
   ]
 })
 export class CoreModule {}
