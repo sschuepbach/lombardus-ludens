@@ -1,5 +1,7 @@
 import { Earlyprint, Manuscript, Modernedition } from './item';
 import { Serialisable } from './serialisable';
+import { unescapeHtml } from '@angular/platform-browser/src/browser/transfer_state';
+import { isUndefined } from 'util';
 
 export class Manifestation implements Serialisable<Manifestation> {
   oid: number;
@@ -19,5 +21,17 @@ export class Manifestation implements Serialisable<Manifestation> {
       this.modernedition = new Modernedition().deserialise(input[ 'modern-edition' ]);
     }
     return this;
+  }
+
+  getItem() {
+    if (this.manuscript) {
+      return this.manuscript;
+    } else if (this.earlyprint) {
+      return this.earlyprint;
+    } else if (this.modernedition) {
+      return this.modernedition;
+    } else {
+      return null;
+    }
   }
 }
