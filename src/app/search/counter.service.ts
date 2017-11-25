@@ -6,10 +6,10 @@ export interface Bucket {
 }
 
 export class Count {
-  private totalResultsBucket = 0;
-  private periodBucket: Bucket = {};
-  private affiliationBucket: Bucket = {};
-  private libraryBucket: Bucket = {};
+  private totalResultsBucket;
+  private periodBucket: Bucket;
+  private affiliationBucket: Bucket;
+  private libraryBucket: Bucket;
 
   private static addTokenToBucket(token: string, bucket: Bucket) {
     return bucket.hasOwnProperty(token) ?
@@ -59,6 +59,12 @@ export class Count {
     return Count.serialiseBucketAsObjectArray(this.libraryBucket);
   }
 
+  resetCounter() {
+    this.totalResultsBucket = 0;
+    this.periodBucket = {};
+    this.affiliationBucket = {};
+    this.libraryBucket = {};
+  }
 
 }
 
@@ -73,6 +79,7 @@ export class CounterService {
   }
 
   aggregate(resultSet: Commentator[]) {
+    this.count.resetCounter();
     resultSet
       .map(commentator => CounterService.countResults(commentator, c => this.count.addOneToken()))
       .map(commentator => CounterService.countResults(commentator, c => this.count.addAffiliationToken(c.affiliations)))
