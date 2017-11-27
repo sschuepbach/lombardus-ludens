@@ -1,0 +1,20 @@
+<form [formGroup]="filterForm" novalidate>
+  <div formGroupName="affiliations">
+    <ul>
+      <li *ngFor="let a of serialiseObjectAsArray(affiliations)">
+        <mat-checkbox [formControlName]="a.key">
+          {{affiliationsMetadata[a.key].title}} ({{affiliationsMetadata[a.key].count}})
+        </mat-checkbox>
+      </li>
+    </ul>
+  </div>
+  <div formGroupName="periods">
+    <ul>
+      <li *ngFor="let p of serialiseObjectAsArray(periods)">
+        <mat-checkbox [formControlName]="p.key">
+          {{periodsMetadata[p.key].title}} ({{periodsMetadata[p.key].count}})
+        </mat-checkbox>
+      </li>
+    </ul>
+  </div>
+</form>
