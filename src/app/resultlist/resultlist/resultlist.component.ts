@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ResultStreamerService } from '../../search/result-streamer.service';
+import { ResultStreamerService } from '../../searchutils/result-streamer.service';
 import { Commentator } from '../../models/commentator';
-import { Count, CounterService } from '../../search/counter.service';
+import { Count, CounterService } from '../../searchutils/counter.service';
 
 @Component({
   selector: 'app-resultlist',

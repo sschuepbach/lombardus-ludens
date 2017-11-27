@@ -1,26 +1,48 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CoreRoutingModule } from './core-routing.module';
-import { SearchModule } from '../search/search.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StaticModule } from '../static/static.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { MaterialModule } from '../material.module';
 
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MainComponent } from './main/main.component';
+import { SearchfieldComponent } from './searchfield/searchfield.component';
+import { RetrieveDataService } from '../searchutils/retrieve-data.service';
+import { CounterService } from '../searchutils/counter.service';
+import { ResultStreamerService } from '../searchutils/result-streamer.service';
+import { CookieInterceptorService } from '../searchutils/cookie-interceptor.service';
+import { MapResultToModelService } from '../models/map-result-to-model.service';
 
 @NgModule({
   imports: [
     CommonModule,
-    SearchModule,
+    HttpClientModule,
     StaticModule,
+    ReactiveFormsModule,
+    MaterialModule,
     NgbModule.forRoot(),
     CoreRoutingModule
   ],
   declarations: [
     HeaderComponent,
     FooterComponent,
-    MainComponent
+    MainComponent,
+    SearchfieldComponent
+  ],
+  providers: [
+    CounterService,
+    MapResultToModelService,
+    ResultStreamerService,
+    RetrieveDataService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CookieInterceptorService,
+      multi: true
+    }
   ],
   exports: [
     FooterComponent,
