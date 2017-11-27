@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { CounterService } from '../counter.service';
-import { ResultStreamerService } from '../result-streamer.service';
+import { CounterService } from '../../search/counter.service';
+import { ResultStreamerService } from '../../search/result-streamer.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import {
   PeriodsFormGroupMetadata,

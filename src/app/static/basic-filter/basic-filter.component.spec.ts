@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ResultsAsTextComponent } from './results-as-text.component';
+import { BasicFilterComponent } from './basic-filter.component';
 
-describe('ResultsAsTextComponent', () => {
-  let component: ResultsAsTextComponent;
-  let fixture: ComponentFixture<ResultsAsTextComponent>;
+describe('BasicFilterComponent', () => {
+  let component: BasicFilterComponent;
+  let fixture: ComponentFixture<BasicFilterComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ResultsAsTextComponent ]
+      declarations: [ BasicFilterComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ResultsAsTextComponent);
+    fixture = TestBed.createComponent(BasicFilterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

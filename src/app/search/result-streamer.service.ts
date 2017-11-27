@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { Commentator } from '../models/commentator';
-import { AffiliationsFormGroupMetadata, PeriodsFormGroupMetadata } from './filter/filter-formgroup';
+import { AffiliationsFormGroupMetadata, PeriodsFormGroupMetadata } from '../filters/filter/filter-formgroup';
 
 @Injectable()
 export class ResultStreamerService {

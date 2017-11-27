@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { ResultStreamerService } from '../result-streamer.service';
+import { ResultStreamerService } from '../../search/result-streamer.service';
 import { Commentator } from '../../models/commentator';
-import { Count, CounterService } from '../counter.service';
+import { Count, CounterService } from '../../search/counter.service';
 
 @Component({
-  selector: 'app-results-as-text',
-  templateUrl: './results-as-text.component.html',
-  styleUrls: [ './results-as-text.component.css' ]
+  selector: 'app-resultlist',
+  templateUrl: './resultlist.component.html',
+  styleUrls: [ './resultlist.component.css' ]
 })
-export class ResultsAsTextComponent implements OnInit {
+export class ResultlistComponent implements OnInit {
 
   results: Commentator[];
   count: Count;
