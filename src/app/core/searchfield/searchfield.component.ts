@@ -14,9 +14,10 @@ import { HttpEventType, HttpResponse } from '@angular/common/http';
   templateUrl: './searchfield.component.html',
   styleUrls: [ './searchfield.component.css' ]
 })
-export class SearchfieldComponent implements OnInit {
+export class SearchfieldComponent {
 
   searchInput: FormControl = new FormControl('');
+  searching = false;
 
   constructor(private retrieveData: RetrieveDataService,
               private mrtm: MapResultToModelService,
@@ -27,13 +28,16 @@ export class SearchfieldComponent implements OnInit {
       .debounceTime(500)
       .switchMap(searchString => retrieveData.getData(searchString))
       .subscribe(
-        res => this.rs.pushResultStream(this.mrtm.parseResult(res)),
+        res => {
+          if (res.type === HttpEventType.Sent) {
+            this.searching = true;
+            // console.log(Math.round(100 * res. / res.total));
+          } else if (res instanceof HttpResponse){
+            this.rs.pushResultStream(this.mrtm.parseResult(res.body));
+            this.searching = false;
+          }
+        },
         err => console.log(`Can't get results. Error code: %s, URL: %s`, err.message, err.url),
-        () => console.log('Results retrieved')
-      );
+        () => console.log('Results retrieved'));
   }
-
-  ngOnInit() {
-  }
-
 }
