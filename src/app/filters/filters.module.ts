@@ -4,12 +4,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {MaterialModule} from '../material.module';
 
 import { FilterComponent } from './filter/filter.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    NgbModule
   ],
   declarations: [ FilterComponent ],
   exports: [ FilterComponent ]
