@@ -12,11 +12,13 @@ export class ResultlistComponent implements OnInit {
 
   results: Commentator[];
   count: Count;
+  numberOfResults: number;
 
   constructor(private rs: ResultStreamerService, private counter: CounterService) {
     rs.resultStream$.subscribe(res => {
       this.count = this.counter.aggregate(res);
       this.results = res;
+      this.numberOfResults = this.count.totalResults;
     });
   }
 

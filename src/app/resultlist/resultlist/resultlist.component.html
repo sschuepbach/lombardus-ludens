@@ -1,3 +1,4 @@
+<p *ngIf="numberOfResults" class="greyed">Number of Results: {{numberOfResults}}</p>
 <mat-list>
   <mat-list-item *ngFor="let c of results">
     <h4 mat-line>{{c.name}}</h4>
