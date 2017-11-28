@@ -14,8 +14,9 @@ import { SearchfieldComponent } from './searchfield/searchfield.component';
 import { RetrieveDataService } from '../searchutils/retrieve-data.service';
 import { CounterService } from '../searchutils/counter.service';
 import { ResultStreamerService } from '../searchutils/result-streamer.service';
-import { CookieInterceptorService } from '../searchutils/cookie-interceptor.service';
+import { CachingInterceptorService } from '../searchutils/caching-interceptor.service';
 import { MapResultToModelService } from '../models/map-result-to-model.service';
+import { HttpCacheService } from '../searchutils/http-cache.service';
 
 @NgModule({
   imports: [
@@ -35,12 +36,13 @@ import { MapResultToModelService } from '../models/map-result-to-model.service';
   ],
   providers: [
     CounterService,
+    HttpCacheService,
     MapResultToModelService,
     ResultStreamerService,
     RetrieveDataService,
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: CookieInterceptorService,
+      useClass: CachingInterceptorService,
       multi: true
     }
   ],
