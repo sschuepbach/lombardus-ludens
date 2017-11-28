@@ -13,6 +13,7 @@ export class ResultlistComponent implements OnInit {
   results: Commentator[];
   count: Count;
   numberOfResults: number;
+  showManifestationsTracker: number[] = [];
 
   constructor(private rs: ResultStreamerService, private counter: CounterService) {
     rs.resultStream$.subscribe(res => {
@@ -25,6 +26,29 @@ export class ResultlistComponent implements OnInit {
   ngOnInit() {
   }
 
+  trackByOid(index: number, commentator: Commentator): number {
+    return commentator.oid;
+  }
 
+  createLinkToRCS(oid: number) {
+    return 'http://rcs.philsem.unibas.ch/oid/' + oid.toString();
+  }
+
+  showManifestation(oid: number): boolean {
+    return this.showManifestationsTracker.indexOf(oid) > -1;
+  }
+
+  toggleShowManifestation(oid: number): void {
+    this.showManifestation(oid) ?
+      this.showManifestationsTracker = this.showManifestationsTracker.filter(x => x !== oid) :
+      this.showManifestationsTracker.push(oid);
+  }
+
+  markupToLink(description: string): string {
+    return description
+      .replace(/\[oid (\d+)\]/g, (a, b) =>
+        '<a href="' + this.createLinkToRCS(b) + '" target="_blank">')
+      .replace(/\[\/oid\]/g, '</a>');
+  }
 
 }
