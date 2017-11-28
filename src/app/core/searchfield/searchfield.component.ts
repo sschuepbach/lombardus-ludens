@@ -31,7 +31,6 @@ export class SearchfieldComponent {
         res => {
           if (res.type === HttpEventType.Sent) {
             this.searching = true;
-            // console.log(Math.round(100 * res. / res.total));
           } else if (res instanceof HttpResponse){
             this.rs.pushResultStream(this.mrtm.parseResult(res.body));
             this.searching = false;
