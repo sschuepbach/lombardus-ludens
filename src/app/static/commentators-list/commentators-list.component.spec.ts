@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BasicFilterComponent } from './basic-filter.component';
+import { CommentatorsListComponent } from './commentators-list.component';
 
-describe('BasicFilterComponent', () => {
-  let component: BasicFilterComponent;
-  let fixture: ComponentFixture<BasicFilterComponent>;
+describe('CommentatorsListComponent', () => {
+  let component: CommentatorsListComponent;
+  let fixture: ComponentFixture<CommentatorsListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BasicFilterComponent ]
+      declarations: [ CommentatorsListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BasicFilterComponent);
+    fixture = TestBed.createComponent(CommentatorsListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

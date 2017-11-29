@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ResultlistModule } from '../resultlist/resultlist.module';
 import { FiltersModule } from '../filters/filters.module';
 
-import { BasicFilterComponent } from './basic-filter/basic-filter.component';
+import { CommentatorsListComponent } from './commentators-list/commentators-list.component';
 
 @NgModule({
   imports: [
@@ -11,7 +11,11 @@ import { BasicFilterComponent } from './basic-filter/basic-filter.component';
     ResultlistModule,
     FiltersModule
   ],
-  declarations: [ BasicFilterComponent ],
-  exports: [ BasicFilterComponent ]
+  declarations: [
+    CommentatorsListComponent,
+  ],
+  exports: [
+    CommentatorsListComponent,
+  ]
 })
 export class StaticModule {}
