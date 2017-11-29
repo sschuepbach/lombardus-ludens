@@ -4,6 +4,7 @@ import { ResultlistModule } from '../resultlist/resultlist.module';
 import { FiltersModule } from '../filters/filters.module';
 
 import { CommentatorsListComponent } from './commentators-list/commentators-list.component';
+import { AggregationsComponent } from './aggregations/aggregations.component';
 
 @NgModule({
   imports: [
@@ -13,9 +14,11 @@ import { CommentatorsListComponent } from './commentators-list/commentators-list
   ],
   declarations: [
     CommentatorsListComponent,
+    AggregationsComponent
   ],
   exports: [
     CommentatorsListComponent,
+    AggregationsComponent
   ]
 })
 export class StaticModule {}
