@@ -1,6 +1,6 @@
 import { Serialisable } from './serialisable';
 
-abstract class Item implements Serialisable<Item> {
+export abstract class Item implements Serialisable<Item> {
   location: string;
   library: string;
   shelfmark: string;

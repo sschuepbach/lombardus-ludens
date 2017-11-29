@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ResultStreamerService } from '../../searchutils/result-streamer.service';
 import { Commentator } from '../../models/commentator';
 import { Count, CounterService } from '../../searchutils/counter.service';
+import { Item } from '../../models/item';
 
 @Component({
   selector: 'app-resultlist',
@@ -26,10 +27,6 @@ export class ResultlistComponent implements OnInit {
   ngOnInit() {
   }
 
-  trackByOid(index: number, commentator: Commentator): number {
-    return commentator.oid;
-  }
-
   // noinspection JSMethodCanBeStatic
   createLinkToRCS(oid: number) {
     return 'http://rcs.philsem.unibas.ch/oid/' + oid.toString();
@@ -52,4 +49,10 @@ export class ResultlistComponent implements OnInit {
       .replace(/\[\/oid]/g, '</a>');
   }
 
+  // noinspection JSMethodCanBeStatic
+  showItem(i: Item): string {
+    return (i.location ? i.location : '') +
+      (i.library ? ', ' + i.library : '') +
+      (i.shelfmark ? ', ' + i.shelfmark : '');
+  }
 }
