@@ -27,6 +27,11 @@ export class ResultlistComponent implements OnInit {
   ngOnInit() {
   }
 
+  // noinspection JSUnusedLocalSymbols, JSMethodCanBeStatic
+  trackByOid(index: number, commentator: Commentator) {
+    return commentator.oid;
+  }
+
   // noinspection JSMethodCanBeStatic
   createLinkToRCS(oid: number) {
     return 'http://rcs.philsem.unibas.ch/oid/' + oid.toString();

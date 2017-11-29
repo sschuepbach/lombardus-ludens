@@ -1,6 +1,6 @@
 <p *ngIf="numberOfResults" class="greyed">Number of Results: {{numberOfResults}}</p>
 <div>
-  <div *ngFor="let commentator of results; trackBy: commentator?.oid;" style="margin-bottom:20px;">
+  <div *ngFor="let commentator of results; trackBy: trackByOid;" style="margin-bottom:20px;">
     <h4>
       <a [href]="createLinkToRCS(commentator.oid)" target="_blank">{{commentator.name}}</a>
       {{commentator.affiliations.join(', ')}}
