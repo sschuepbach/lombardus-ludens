@@ -1,7 +1,5 @@
 import { Earlyprint, Manuscript, Modernedition } from './item';
 import { Serialisable } from './serialisable';
-import { unescapeHtml } from '@angular/platform-browser/src/browser/transfer_state';
-import { isUndefined } from 'util';
 
 export class Manifestation implements Serialisable<Manifestation> {
   oid: number;

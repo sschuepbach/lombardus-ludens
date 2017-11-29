@@ -53,7 +53,7 @@ export class FilterComponent {
     });
     this.filterForm
       .valueChanges
-      .subscribe(res => { if (this.filterForm.dirty) {this.results.updateFilters(res);}});
+      .subscribe(res => { if (this.filterForm.dirty) {this.results.updateFilters(res); }});
   }
 
   createForm() {
@@ -64,6 +64,7 @@ export class FilterComponent {
     );
   }
 
+  // noinspection JSMethodCanBeStatic
   serialiseObjectAsArray(obj: any) {
     const res = [];
     for (const o of Object.keys(obj)) {

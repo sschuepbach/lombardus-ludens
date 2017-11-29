@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RetrieveDataService } from '../../searchutils/retrieve-data.service';
 import { FormControl } from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
@@ -31,7 +31,7 @@ export class SearchfieldComponent {
         res => {
           if (res.type === HttpEventType.Sent) {
             this.searching = true;
-          } else if (res instanceof HttpResponse){
+          } else if (res instanceof HttpResponse) {
             this.rs.pushResultStream(this.mrtm.parseResult(res.body));
             this.searching = false;
           }

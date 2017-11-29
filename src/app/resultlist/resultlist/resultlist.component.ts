@@ -30,6 +30,7 @@ export class ResultlistComponent implements OnInit {
     return commentator.oid;
   }
 
+  // noinspection JSMethodCanBeStatic
   createLinkToRCS(oid: number) {
     return 'http://rcs.philsem.unibas.ch/oid/' + oid.toString();
   }
@@ -46,9 +47,9 @@ export class ResultlistComponent implements OnInit {
 
   markupToLink(description: string): string {
     return description
-      .replace(/\[oid (\d+)\]/g, (a, b) =>
+      .replace(/\[oid (\d+)]/g, (a, b) =>
         '<a href="' + this.createLinkToRCS(b) + '" target="_blank">')
-      .replace(/\[\/oid\]/g, '</a>');
+      .replace(/\[\/oid]/g, '</a>');
   }
 
 }
