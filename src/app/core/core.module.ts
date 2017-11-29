@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CoreRoutingModule } from './core-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { StaticModule } from '../static/static.module';
+import { MainViewsModule } from '../main-views/main-views.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from '../material.module';
@@ -22,7 +22,7 @@ import { HttpCacheService } from '../searchutils/http-cache.service';
   imports: [
     CommonModule,
     HttpClientModule,
-    StaticModule,
+    MainViewsModule,
     ReactiveFormsModule,
     MaterialModule,
     NgbModule.forRoot(),

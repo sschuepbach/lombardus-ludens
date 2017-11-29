@@ -21,4 +21,4 @@ import { AggregationsComponent } from './aggregations/aggregations.component';
     AggregationsComponent
   ]
 })
-export class StaticModule {}
+export class MainViewsModule {}
