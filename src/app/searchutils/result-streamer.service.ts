@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
 import { Commentator } from '../models/commentator';
 import { AffiliationsFormGroupMetadata, PeriodsFormGroupMetadata } from '../filters/filter/filter-formgroup';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 @Injectable()
 export class ResultStreamerService {
 
-  private resultStreamSource = new Subject<Array<Commentator>>();
+  private resultStreamSource = new ReplaySubject<Array<Commentator>>(1);
   private filteredAffiliations: string[] = [];
   private filteredPeriods: string[] = [];
   private results: Commentator[];
