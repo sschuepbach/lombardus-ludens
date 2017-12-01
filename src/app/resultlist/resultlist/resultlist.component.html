@@ -1,14 +1,14 @@
 <p *ngIf="numberOfResults" class="greyed">Number of Results: {{numberOfResults}}</p>
 <div>
-  <div *ngFor="let commentator of results; trackBy: trackByOid;" style="margin-bottom:20px;">
-    <h4>
+  <div *ngFor="let commentator of results; trackBy: trackByOid;" style="margin-bottom:0;">
+    <h4 style="margin-bottom:0;">
+      <button mat-icon-button (click)="toggleShowManifestation(commentator.oid)">
+        <mat-icon>{{showManifestation(commentator.oid) ? 'expand_less' : 'expand_more'}}</mat-icon>
+      </button>
       <a [href]="createLinkToRCS(commentator.oid)" target="_blank">{{commentator.name}}</a>
       {{commentator.affiliations.join(', ')}}
-      <span style="font-size:65%">
-        [<a (click)="toggleShowManifestation(commentator.oid)" style="cursor:pointer">{{showManifestation(commentator.oid) ? 'hide' : 'show'}}</a>]
-      </span>
     </h4>
-    <div *ngIf="showManifestation(commentator.oid)">
+    <div *ngIf="showManifestation(commentator.oid)" style="margin-left:14px;">
       <p>Period: {{commentator.period}}</p>
       <p><i [innerHtml]="markupToLink(commentator.description)"></i></p>
       <p style="margin-bottom:0;">Commentaries:</p>
