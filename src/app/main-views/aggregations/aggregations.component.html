@@ -1,11 +1,11 @@
 <h2>Basic Aggregations</h2>
-<ng-container *ngIf="towns">
+<ng-container *ngIf="townsAlphabetically && townsByCount">
   <h3>Library Towns</h3>
   <button mat-button (click)="alphabeticallySorted = !alphabeticallySorted">
     {{alphabeticallySorted ? 'Sort by count' : 'Sort alphabetically'}}
   </button>
   <ul>
-    <li *ngFor="let t of (alphabeticallySorted ? sortAlphabetically(towns) : sortByCounts(towns))">
+    <li *ngFor="let t of (alphabeticallySorted ? townsAlphabetically : townsByCount)">
       {{t.key}}: {{t.value}}
     </li>
   </ul>

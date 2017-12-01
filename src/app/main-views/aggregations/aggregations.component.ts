@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ResultStreamerService } from '../../searchutils/result-streamer.service';
-import { Bucket, Count, CounterService } from '../../searchutils/counter.service';
+import { Bucket, CounterService, Sorting } from '../../searchutils/counter.service';
 import { Commentator } from '../../models/commentator';
+import { LibrariesExtractor, TownsExtractor } from '../../searchutils/ElementExtractor';
 
 @Component({
   selector: 'app-aggregations',
@@ -9,48 +10,26 @@ import { Commentator } from '../../models/commentator';
 })
 export class AggregationsComponent implements OnInit {
 
-  count: Count;
   results: Commentator[];
+  townsAlphabetically: Bucket[];
+  townsByCount: Bucket[];
   libraries: Bucket[];
-  towns: any[];
   alphabeticallySorted = true;
 
-  private static sortArrayAlphabetically(a: any, b: any): number {
-    if (a.key < b.key) {
-      return -1;
-    } else if (a.key > b.key) {
-      return 1;
-    }
-    return 0;
-  }
-
-  private static sortArrayByCounts(a: any, b: any): number {
-    if (a.value < b.value) {
-      return 1;
-    } else if (a.value > b.value) {
-      return -1;
-    }
-    return AggregationsComponent.sortArrayAlphabetically(a, b);
-  }
-
   constructor(private rs: ResultStreamerService, private counter: CounterService) {
+    counter
+      .register(new TownsExtractor())
+      .register(new LibrariesExtractor());
     rs.resultStream$.subscribe(res => {
-      this.count = counter.aggregate(res);
+      counter.aggregate(res);
       this.results = res;
-      this.libraries = this.count.libraries;
-      this.towns = this.count.towns;
+      this.libraries = counter.getType('LibrariesExtractor');
+      this.townsAlphabetically = counter.getType('TownsExtractor', Sorting.ALPHABETICALLY);
+      this.townsByCount = counter.getType('TownsExtractor', Sorting.BYCOUNT);
     });
   }
 
   ngOnInit() {
-  }
-
-  sortAlphabetically(obj: any[]) {
-    return obj ? obj.sort((a, b) => AggregationsComponent.sortArrayAlphabetically(a, b)) : obj;
-  }
-
-  sortByCounts(obj: any[]) {
-    return obj ? obj.sort((a, b) => AggregationsComponent.sortArrayByCounts(a, b)) : obj;
   }
 
 }

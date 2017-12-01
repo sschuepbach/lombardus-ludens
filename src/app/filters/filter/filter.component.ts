@@ -8,6 +8,7 @@ import {
   AffiliationsFormGroupMetadata,
   AffiliationsFormGroupData
 } from './filter-formgroup';
+import { AffiliationsExtractor, PeriodExtractor } from '../../searchutils/ElementExtractor';
 
 
 @Component({
@@ -42,12 +43,15 @@ export class FilterComponent {
 
   constructor(private results: ResultStreamerService, private counter: CounterService, private fb: FormBuilder) {
     this.createForm();
+    counter
+      .register(new PeriodExtractor())
+      .register(new AffiliationsExtractor());
     results.resultStream$.subscribe(res => {
-      const count = counter.aggregate(res);
-      FilterComponent.updateCountsInFilterFormMetadata(count.periods,
+      counter.aggregate(res);
+      FilterComponent.updateCountsInFilterFormMetadata(counter.getType('PeriodExtractor'),
         this.periodsMetadata,
         (this.filterForm.get('periods') as FormGroup));
-      FilterComponent.updateCountsInFilterFormMetadata(count.affiliations,
+      FilterComponent.updateCountsInFilterFormMetadata(counter.getType('AffiliationsExtractor'),
         this.affiliationsMetadata,
         (this.filterForm.get('affiliations') as FormGroup));
     });
