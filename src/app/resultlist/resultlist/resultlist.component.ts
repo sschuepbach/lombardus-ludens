@@ -6,8 +6,7 @@ import { Item } from '../../models/item';
 
 @Component({
   selector: 'app-resultlist',
-  templateUrl: './resultlist.component.html',
-  styleUrls: [ './resultlist.component.css' ]
+  templateUrl: './resultlist.component.html'
 })
 export class ResultlistComponent implements OnInit {
 

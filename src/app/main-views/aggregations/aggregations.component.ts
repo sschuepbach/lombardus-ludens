@@ -5,8 +5,7 @@ import { Commentator } from '../../models/commentator';
 
 @Component({
   selector: 'app-aggregations',
-  templateUrl: './aggregations.component.html',
-  styleUrls: [ './aggregations.component.css' ]
+  templateUrl: './aggregations.component.html'
 })
 export class AggregationsComponent implements OnInit {
 

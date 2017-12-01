@@ -11,8 +11,7 @@ import { HttpEventType, HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-searchfield',
-  templateUrl: './searchfield.component.html',
-  styleUrls: [ './searchfield.component.css' ]
+  templateUrl: './searchfield.component.html'
 })
 export class SearchfieldComponent {
 
