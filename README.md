@@ -8,7 +8,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 1. `git https://github.com/sschuepbach/lombardus-ludens.git`
 2. `cd lombardus-ludens`
-3. `npm install`
+3. `yarn` (<- Install packages with yarn) or `npm install` (<- Install packages with npm)
 
 ## Development
 
