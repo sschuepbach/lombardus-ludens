@@ -59,4 +59,5 @@
     "component": {
     }
   },
+  "packageManager": "yarn"
 }
