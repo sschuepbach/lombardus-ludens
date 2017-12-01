@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ResultStreamerService } from '../../searchutils/result-streamer.service';
 import { Commentator } from '../../models/commentator';
-import { Count, CounterService } from '../../searchutils/counter.service';
 import { Item } from '../../models/item';
 
 @Component({
@@ -11,15 +10,13 @@ import { Item } from '../../models/item';
 export class ResultlistComponent implements OnInit {
 
   results: Commentator[];
-  count: Count;
   numberOfResults: number;
   showManifestationsTracker: number[] = [];
 
-  constructor(private rs: ResultStreamerService, private counter: CounterService) {
+  constructor(private rs: ResultStreamerService) {
     rs.resultStream$.subscribe(res => {
-      this.count = this.counter.aggregate(res);
       this.results = res;
-      this.numberOfResults = this.count.totalResults;
+      this.numberOfResults = res.length;
     });
   }
 
