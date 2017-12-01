@@ -10,6 +10,7 @@ export class Count {
   private periodBucket: Bucket;
   private affiliationBucket: Bucket;
   private libraryBucket: Bucket;
+  private townBucket: Bucket;
 
   private static addTokenToBucket(token: string, bucket: Bucket) {
     return bucket.hasOwnProperty(token) ?
@@ -43,6 +44,10 @@ export class Count {
     Count.addTokenToBucket(library, this.libraryBucket);
   }
 
+  addTown(town: string) {
+    Count.addTokenToBucket(town, this.townBucket);
+  }
+
   get totalResults() {
     return this.totalResultsBucket;
   }
@@ -59,11 +64,16 @@ export class Count {
     return Count.serialiseBucketAsObjectArray(this.libraryBucket);
   }
 
+  get towns() {
+    return Count.serialiseBucketAsObjectArray(this.townBucket);
+  }
+
   resetCounter() {
     this.totalResultsBucket = 0;
     this.periodBucket = {};
     this.affiliationBucket = {};
     this.libraryBucket = {};
+    this.townBucket = {};
   }
 
 }
@@ -84,7 +94,8 @@ export class CounterService {
       .map(commentator => CounterService.countResults(commentator, c => this.count.addOneToken()))
       .map(commentator => CounterService.countResults(commentator, c => this.count.addAffiliationToken(c.affiliations)))
       .map(commentator => CounterService.countResults(commentator, c => this.count.addPeriodToken(c.period)))
-      .map(commentator => CounterService.countResults(commentator, c => this.getLibrariesFromCommentator(c)));
+      .map(commentator => CounterService.countResults(commentator, c => this.getLibrariesFromCommentator(c)))
+      .map(commentator => CounterService.countResults(commentator, c => this.getTownsFromCommentator(c)));
     return this.count;
   }
 
@@ -94,6 +105,14 @@ export class CounterService {
         this.count.addLibrary(
           (manifestation.getItem().location ? manifestation.getItem().location : '') +
           (manifestation.getItem().library ? '#' + manifestation.getItem().library : ''));
+      }
+    }
+  }
+
+  private getTownsFromCommentator(c: Commentator): void {
+    for (const commentary of c.commentaries) {
+      for (const manifestation of commentary.manifestations) {
+        this.count.addTown(manifestation.getItem().location);
       }
     }
   }
