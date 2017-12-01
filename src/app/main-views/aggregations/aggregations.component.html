@@ -1,3 +1,14 @@
 <h2>Basic Aggregations</h2>
+<ng-container *ngIf="towns">
+  <h3>Library Towns</h3>
+  <button mat-button (click)="alphabeticallySorted = !alphabeticallySorted">
+    {{alphabeticallySorted ? 'Sort by count' : 'Sort alphabetically'}}
+  </button>
+  <ul>
+    <li *ngFor="let t of (alphabeticallySorted ? sortAlphabetically(towns) : sortByCounts(towns))">
+      {{t.key}}: {{t.value}}
+    </li>
+  </ul>
+</ng-container>
 
 <!--<app-histogram></app-histogram>-->

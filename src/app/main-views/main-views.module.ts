@@ -5,12 +5,14 @@ import { FiltersModule } from '../filters/filters.module';
 
 import { CommentatorsListComponent } from './commentators-list/commentators-list.component';
 import { AggregationsComponent } from './aggregations/aggregations.component';
+import { MaterialModule } from '../material.module';
 
 @NgModule({
   imports: [
     CommonModule,
     ResultlistModule,
-    FiltersModule
+    FiltersModule,
+    MaterialModule
   ],
   declarations: [
     CommentatorsListComponent,
