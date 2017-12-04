@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ResultStreamerService } from '../../shared/searchutils/result-streamer.service';
-import { Bucket, CounterService, Sorting } from '../../shared/searchutils/counter.service';
+import { Bucket, CounterService, Sorting } from '../../shared/aggregations/counter.service';
 import { Commentator } from '../../shared/models/commentator';
-import { LibrariesExtractor, TownsExtractor } from '../../shared/searchutils/ElementExtractor';
+import { LibrariesExtractor, TownsExtractor } from '../../shared/aggregations/ElementExtractor';
 
 @Component({
   selector: 'app-aggregations',

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CounterService } from '../../shared/searchutils/counter.service';
+import { CounterService } from '../../shared/aggregations/counter.service';
 import { ResultStreamerService } from '../../shared/searchutils/result-streamer.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import {
@@ -8,7 +8,7 @@ import {
   AffiliationsFormGroupMetadata,
   AffiliationsFormGroupData
 } from './filter-formgroup';
-import { AffiliationsExtractor, PeriodExtractor } from '../../shared/searchutils/ElementExtractor';
+import { AffiliationsExtractor, PeriodExtractor } from '../../shared/aggregations/ElementExtractor';
 
 
 @Component({
