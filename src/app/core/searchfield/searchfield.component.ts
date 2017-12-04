@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { RetrieveDataService } from '../../searchutils/retrieve-data.service';
+import { RetrieveDataService } from '../../shared/searchutils/retrieve-data.service';
 import { FormControl } from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/filter';
-import { MapResultToModelService } from '../../models/map-result-to-model.service';
-import { ResultStreamerService } from '../../searchutils/result-streamer.service';
+import { MapResultToModelService } from '../../shared/models/map-result-to-model.service';
+import { ResultStreamerService } from '../../shared/searchutils/result-streamer.service';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 
 

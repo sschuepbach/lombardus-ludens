@@ -11,12 +11,12 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MainComponent } from './main/main.component';
 import { SearchfieldComponent } from './searchfield/searchfield.component';
-import { RetrieveDataService } from '../searchutils/retrieve-data.service';
-import { CounterService } from '../searchutils/counter.service';
-import { ResultStreamerService } from '../searchutils/result-streamer.service';
-import { CachingInterceptorService } from '../searchutils/caching-interceptor.service';
-import { MapResultToModelService } from '../models/map-result-to-model.service';
-import { HttpCacheService } from '../searchutils/http-cache.service';
+import { RetrieveDataService } from '../shared/searchutils/retrieve-data.service';
+import { CounterService } from '../shared/searchutils/counter.service';
+import { ResultStreamerService } from '../shared/searchutils/result-streamer.service';
+import { CachingInterceptorService } from '../shared/searchutils/caching-interceptor.service';
+import { MapResultToModelService } from '../shared/models/map-result-to-model.service';
+import { HttpCacheService } from '../shared/searchutils/http-cache.service';
 
 @NgModule({
   imports: [

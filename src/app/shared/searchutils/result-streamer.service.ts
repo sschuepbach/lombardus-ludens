@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Commentator } from '../models/commentator';
-import { AffiliationsFormGroupMetadata, PeriodsFormGroupMetadata } from '../filters/filter/filter-formgroup';
+import { AffiliationsFormGroupMetadata, PeriodsFormGroupMetadata } from '../../filters/filter/filter-formgroup';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 @Injectable()

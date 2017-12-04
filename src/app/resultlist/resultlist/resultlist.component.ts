@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ResultStreamerService } from '../../searchutils/result-streamer.service';
-import { Commentator } from '../../models/commentator';
-import { Item } from '../../models/item';
+import { ResultStreamerService } from '../../shared/searchutils/result-streamer.service';
+import { Commentator } from '../../shared/models/commentator';
+import { Item } from '../../shared/models/item';
 
 @Component({
   selector: 'app-resultlist',
