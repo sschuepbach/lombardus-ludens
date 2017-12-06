@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+
+  web:
+    build:
+      context: .
+      dockerfile: ./.docker/Dockerfile_dev
+    command: ng serve
+    container_name: lombardus-ludens-dev
+    image: lombardus-ludens/dev
+    volumes:
+      - ./src:/home/node/lombardus-ludens/src
+    networks:
+      - dev-network
+    ports:
+      - '4200:4200'
+
+networks:
+  dev-network:
+    driver: bridge

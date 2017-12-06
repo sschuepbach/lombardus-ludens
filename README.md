@@ -10,6 +10,21 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 2. `cd lombardus-ludens`
 3. `yarn` (<- Install packages with yarn) or `npm install` (<- Install packages with npm)
 
+### As Docker container
+
+Requirements:
+* A running [Docker](https://docker.com) daemon
+* [docker-compose](https://docs.docker.com/compose/)
+
+Installation steps:
+1. `git https://github.com/sschuepbach/lombardus-ludens.git`
+2. `cd lombardus-ludens`
+3. Run
+  - On **node.js server**: `docker-compose -f docker-compose.dev.yml up`
+  - On **webserver** (precompiled): `docker-compose -f docker-compose.prod.yml up`
+
+Alternatively you can have a production instance deployed with docker run `sschuepbach/lombardus-ludens:latest`
+
 ## Development
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

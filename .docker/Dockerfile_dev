@@ -1,0 +1,18 @@
+FROM node:9.2.0-alpine
+
+WORKDIR /home/node/lombardus-ludens
+
+RUN npm install --global yarn
+
+COPY package.json .
+COPY yarn.lock .
+COPY .angular-cli.json .
+COPY tsconfig.json .
+COPY tslint.json .
+
+RUN chown -R node:node .
+USER node
+
+RUN yarn
+RUN yarn add --dev @angular/cli
+ENV PATH="$PATH:node_modules/@angular/cli/bin"
