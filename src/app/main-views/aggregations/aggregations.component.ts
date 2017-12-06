@@ -18,8 +18,8 @@ export class AggregationsComponent implements OnInit {
 
   constructor(private rs: ResultStreamerService, private counter: CounterService) {
     counter
-      .register(new TownsExtractor())
-      .register(new LibrariesExtractor());
+      .register(new TownsExtractor('TownsExtractor'))
+      .register(new LibrariesExtractor('LibrariesExtractor'));
     rs.resultStream$.subscribe(res => {
       counter.aggregate(res);
       this.results = res;

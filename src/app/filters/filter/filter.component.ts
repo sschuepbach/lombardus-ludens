@@ -44,8 +44,8 @@ export class FilterComponent {
   constructor(private results: ResultStreamerService, private counter: CounterService, private fb: FormBuilder) {
     this.createForm();
     counter
-      .register(new PeriodExtractor())
-      .register(new AffiliationsExtractor());
+      .register(new PeriodExtractor('PeriodExtractor'))
+      .register(new AffiliationsExtractor('AffiliationsExtractor'));
     results.resultStream$.subscribe(res => {
       counter.aggregate(res);
       FilterComponent.updateCountsInFilterFormMetadata(counter.getType('PeriodExtractor'),

@@ -1,7 +1,10 @@
 import { Commentator } from '../models/commentator';
 
 export abstract class ElementExtractor {
-  readonly category: string = this.constructor.name;
+  readonly category: string;
+  constructor(category: string) {
+    this.category = category;
+  }
   abstract extract(): (Commentator) => string[];
 }
 
