@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import {
   MatAutocompleteModule,
   MatButtonModule,
+  MatButtonToggleModule,
   MatCardModule,
   MatCheckboxModule,
   MatDatepickerModule,
@@ -12,6 +13,7 @@ import {
   MatInputModule,
   MatLineModule,
   MatListModule,
+  MatMenuModule,
   MatNativeDateModule,
   MatOptionModule,
   MatPaginatorModule,
@@ -31,11 +33,14 @@ import {
   MatToolbarModule,
   MatTooltipModule
 } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
+    BrowserAnimationsModule,
     MatAutocompleteModule,
     MatButtonModule,
+    MatButtonToggleModule,
     MatCardModule,
     MatCheckboxModule,
     MatDatepickerModule,
@@ -46,6 +51,7 @@ import {
     MatInputModule,
     MatLineModule,
     MatListModule,
+    MatMenuModule,
     MatNativeDateModule,
     MatOptionModule,
     MatPaginatorModule,
@@ -66,8 +72,10 @@ import {
     MatTooltipModule
   ],
   exports: [
+    BrowserAnimationsModule,
     MatAutocompleteModule,
     MatButtonModule,
+    MatButtonToggleModule,
     MatCardModule,
     MatCheckboxModule,
     MatDatepickerModule,
@@ -78,6 +86,7 @@ import {
     MatInputModule,
     MatLineModule,
     MatListModule,
+    MatMenuModule,
     MatNativeDateModule,
     MatOptionModule,
     MatPaginatorModule,

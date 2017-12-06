@@ -1,6 +1,8 @@
 <mat-sidenav-container>
-  <mat-sidenav>Start</mat-sidenav>
-  <mat-sidenav-content>
+  <mat-sidenav position="start" mode="side" [opened]="menuOpened">
+    <app-navigation-menu></app-navigation-menu>
+  </mat-sidenav>
+  <mat-sidenav-content style="min-height:300px;">
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

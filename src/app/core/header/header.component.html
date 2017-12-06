@@ -1,5 +1,14 @@
-<nav class="navbar navbar-expand-lg" style="background-color:#555">
+<nav class="navbar navbar-expand-lg" style="background-color:#555; height:60px;">
   <div style="margin: 10px 7px 20px;">
-    <app-searchfield></app-searchfield>
+    <div style="display:flex;">
+      <div style="margin-right:20px;">
+        <button mat-icon-button (click)="menuOpener.toggleMenu()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+      <div style="width:100%;">
+        <app-searchfield></app-searchfield>
+      </div>
+    </div>
   </div>
 </nav>

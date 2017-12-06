@@ -18,6 +18,8 @@ import { MapResultToModelService } from '../shared/models/map-result-to-model.se
 import { HttpCacheService } from '../shared/cache/http-cache.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { MainComponent } from './main/main.component';
+import { NavigationMenuComponent } from './navigation-menu/navigation-menu.component';
+import { OpenMenuService } from './open-menu.service';
 
 @NgModule({
   imports: [
@@ -36,7 +38,8 @@ import { MainComponent } from './main/main.component';
     FooterComponent,
     SearchfieldComponent,
     PageNotFoundComponent,
-    MainComponent
+    MainComponent,
+    NavigationMenuComponent
   ],
   providers: [
     CounterService,
@@ -44,6 +47,7 @@ import { MainComponent } from './main/main.component';
     MapResultToModelService,
     ResultStreamerService,
     RetrieveDataService,
+    OpenMenuService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: CachingInterceptorService,
