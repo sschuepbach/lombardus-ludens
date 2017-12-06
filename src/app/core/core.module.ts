@@ -1,15 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CoreRoutingModule } from './core-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MainViewsModule } from '../main-views/main-views.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from '../material.module';
+import { RouterModule } from '@angular/router';
 
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { MainComponent } from './main/main.component';
 import { SearchfieldComponent } from './searchfield/searchfield.component';
 import { RetrieveDataService } from '../shared/searchutils/retrieve-data.service';
 import { CounterService } from '../shared/aggregations/counter.service';
@@ -17,6 +16,8 @@ import { ResultStreamerService } from '../shared/searchutils/result-streamer.ser
 import { CachingInterceptorService } from '../shared/cache/caching-interceptor.service';
 import { MapResultToModelService } from '../shared/models/map-result-to-model.service';
 import { HttpCacheService } from '../shared/cache/http-cache.service';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { MainComponent } from './main/main.component';
 
 @NgModule({
   imports: [
@@ -26,13 +27,16 @@ import { HttpCacheService } from '../shared/cache/http-cache.service';
     ReactiveFormsModule,
     MaterialModule,
     NgbModule.forRoot(),
-    CoreRoutingModule
+    RouterModule.forRoot([
+      { path: '**', component: PageNotFoundComponent }
+    ])
   ],
   declarations: [
     HeaderComponent,
     FooterComponent,
-    MainComponent,
-    SearchfieldComponent
+    SearchfieldComponent,
+    PageNotFoundComponent,
+    MainComponent
   ],
   providers: [
     CounterService,

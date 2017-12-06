@@ -1,12 +1,6 @@
-<ngb-tabset>
-  <ngb-tab title="Commentators">
-    <ng-template ngbTabContent>
-      <app-commentators></app-commentators>
-    </ng-template>
-  </ngb-tab>
-  <ngb-tab title="Aggregations">
-    <ng-template ngbTabContent>
-      <app-aggregations></app-aggregations>
-    </ng-template>
-  </ngb-tab>
-</ngb-tabset>
+<mat-sidenav-container>
+  <mat-sidenav>Start</mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

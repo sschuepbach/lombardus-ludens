@@ -2,25 +2,34 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ResultlistModule } from '../resultlist/resultlist.module';
 import { FiltersModule } from '../filters/filters.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MaterialModule } from '../material.module';
 
 import { CommentatorsListComponent } from './commentators-list/commentators-list.component';
 import { AggregationsComponent } from './aggregations/aggregations.component';
-import { MaterialModule } from '../material.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
     ResultlistModule,
     FiltersModule,
-    MaterialModule
+    MaterialModule,
+    NgbModule,
+    RouterModule.forChild([
+      { path: 'aggregations', component: AggregationsComponent },
+      { path: 'commentators', component: CommentatorsListComponent },
+      { path: 'commentators/:id', component: CommentatorsListComponent },
+      { path: '', redirectTo: '/commentators', pathMatch: 'full' }
+    ])
   ],
   declarations: [
-    CommentatorsListComponent,
-    AggregationsComponent
+    AggregationsComponent,
+    CommentatorsListComponent
   ],
   exports: [
-    CommentatorsListComponent,
-    AggregationsComponent
+    AggregationsComponent,
+    CommentatorsListComponent
   ]
 })
 export class MainViewsModule {}
