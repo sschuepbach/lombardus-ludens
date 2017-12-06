@@ -20,10 +20,8 @@ Installation steps:
 1. `git https://github.com/sschuepbach/lombardus-ludens.git`
 2. `cd lombardus-ludens`
 3. Run
-  - On **node.js server**: `docker-compose -f docker-compose.dev.yml up`
-  - On **webserver** (precompiled): `docker-compose -f docker-compose.prod.yml up`
-
-Alternatively you can have a production instance deployed with docker run `sschuepbach/lombardus-ludens:latest`
+  - On **node.js server**: `docker-compose -f docker-compose.dev.yml up`. Application is served on `localhost:4200`
+  - On **webserver** (precompiled): `docker-compose -f docker-compose.prod.yml up`. Application is served on `localhost:5555`
 
 ## Development
 
