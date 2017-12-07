@@ -16,25 +16,42 @@ export class RouteTrackingService {
   // - Get params
   // - Get routesHistory
 
-  routeParams: any;
-  currentRouteSegments: string;
-  routesHistory: RouteToken[] = [];
+  searchTerm: any = {};
+  filterParams: any = {};
+  private currentRouteSegments: string;
+  private routesHistory: RouteToken[] = [];
+
+  private static traverseObject(obj: any, path?: string) {
+    let res: any = {};
+    for (const k of obj instanceof Array ? obj : Object.keys(obj) ) {
+      if (typeof obj[ k ] === 'boolean' && !obj[ k ]) {
+        res[ (path ? path + '_' : '') + k ] = obj[ k ];
+      } else if (obj[ k ] instanceof Array) {
+        res = Object.assign(res, RouteTrackingService.traverseObject(obj[ k ], (path ? path + '_' : '') + k));
+      } else {
+        res = Object.assign(res, RouteTrackingService.traverseObject(obj[ k ], (path ? path + '_' : '') + k));
+      }
+    }
+    return res;
+  }
 
   constructor(private route: ActivatedRoute, private router: Router) {
     router.events.subscribe(res => {
       if (res instanceof NavigationEnd) {
-        this.routesHistory.unshift({id: res.id, route: res.url});
-        this.currentRouteSegments = res.url.split(';')[0];
+        this.routesHistory.unshift({ id: res.id, route: res.url });
+        this.currentRouteSegments = res.url.split(';')[ 0 ];
       }
     });
   }
 
-  updateSearchTerm(searchTerm: string) {
-    this.router.navigate([this.currentRouteSegments, { search: searchTerm } ]);
+  updateSearchTerm(searchTerm: string): void {
+    this.searchTerm = {search: searchTerm};
+    this.updateRoute();
   }
 
-  updateFilters(filter: any) {
-
+  updateFilters(filters: any) {
+    this.filterParams = RouteTrackingService.traverseObject(filters);
+    this.updateRoute();
   }
 
   getRoutesHistory(numberOfRoutes: number) {
@@ -43,6 +60,11 @@ export class RouteTrackingService {
 
   deleteRouteElement(id: number) {
     this.routesHistory = this.routesHistory.filter(x => x.id !== id);
+  }
+
+  private updateRoute(): void {
+    console.log(Object.assign(this.searchTerm, this.filterParams));
+    this.router.navigate([this.currentRouteSegments, Object.assign(this.searchTerm, this.filterParams)]);
   }
 
 }

@@ -9,6 +9,7 @@ import {
   AffiliationsFormGroupData
 } from './filter-formgroup';
 import { AffiliationsExtractor, PeriodExtractor } from '../../shared/aggregations/ElementExtractor';
+import { RouteTrackingService } from '../../shared/routing/route-tracking.service';
 
 
 @Component({
@@ -41,7 +42,10 @@ export class FilterComponent {
     }
   }
 
-  constructor(private results: ResultStreamerService, private counter: CounterService, private fb: FormBuilder) {
+  constructor(private results: ResultStreamerService,
+              private counter: CounterService,
+              private fb: FormBuilder,
+              private rts: RouteTrackingService) {
     this.createForm();
     counter
       .register(new PeriodExtractor('PeriodExtractor'))
@@ -57,7 +61,12 @@ export class FilterComponent {
     });
     this.filterForm
       .valueChanges
-      .subscribe(res => { if (this.filterForm.dirty) {this.results.updateFilters(res); }});
+      .subscribe(res => {
+        if (this.filterForm.dirty) {
+          results.updateFilters(res);
+          rts.updateFilters(res);
+        }
+      });
   }
 
   createForm() {
