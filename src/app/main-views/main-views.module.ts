@@ -19,7 +19,6 @@ import { RouterModule } from '@angular/router';
     RouterModule.forChild([
       { path: 'aggregations', component: AggregationsComponent },
       { path: 'commentators', component: CommentatorsListComponent },
-      { path: 'commentators/:id', component: CommentatorsListComponent },
       { path: '', redirectTo: '/commentators', pathMatch: 'full' }
     ])
   ],

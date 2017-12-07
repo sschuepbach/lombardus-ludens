@@ -20,6 +20,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { MainComponent } from './main/main.component';
 import { NavigationMenuComponent } from './navigation-menu/navigation-menu.component';
 import { OpenMenuService } from './open-menu.service';
+import { RouteTrackingService } from '../shared/routing/route-tracking.service';
 
 @NgModule({
   imports: [
@@ -48,6 +49,7 @@ import { OpenMenuService } from './open-menu.service';
     ResultStreamerService,
     RetrieveDataService,
     OpenMenuService,
+    RouteTrackingService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: CachingInterceptorService,

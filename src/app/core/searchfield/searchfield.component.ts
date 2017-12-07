@@ -7,6 +7,7 @@ import 'rxjs/add/operator/filter';
 import { MapResultToModelService } from '../../shared/models/map-result-to-model.service';
 import { ResultStreamerService } from '../../shared/searchutils/result-streamer.service';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
+import { RouteTrackingService } from '../../shared/routing/route-tracking.service';
 
 
 @Component({
@@ -20,12 +21,16 @@ export class SearchfieldComponent {
 
   constructor(private retrieveData: RetrieveDataService,
               private mrtm: MapResultToModelService,
-              private rs: ResultStreamerService) {
+              private rs: ResultStreamerService,
+              private rts: RouteTrackingService) {
     this.searchInput
       .valueChanges
       .filter(x => x.length >= 3)
       .debounceTime(500)
-      .switchMap(searchString => retrieveData.getData(searchString))
+      .switchMap(searchString => {
+        rts.updateSearchTerm(searchString);
+        return retrieveData.getData(searchString);
+      })
       .subscribe(
         res => {
           if (res.type === HttpEventType.Sent) {
