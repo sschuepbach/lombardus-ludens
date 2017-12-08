@@ -1,8 +1,8 @@
 <mat-sidenav-container>
-  <mat-sidenav position="start" mode="side" [opened]="menuOpened">
+  <mat-sidenav position="start" mode="side" [opened]="menuOpened" style="min-width:200px;">
     <app-navigation-menu></app-navigation-menu>
   </mat-sidenav>
-  <mat-sidenav-content style="min-height:300px;">
+  <mat-sidenav-content style="min-height:600px; padding-left:10px; background:white;">
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

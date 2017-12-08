@@ -1,8 +1,9 @@
-<div style="display:flex; flex-direction: column;">
-  <a [routerLink]="createLink('/commentators')" class="menuElement">
-    <div>Commentators</div>
-  </a>
-  <a [routerLink]="createLink('/aggregations')" class="menuElement">
-    <div>Aggregations</div>
-  </a>
+<div id="menu" style="display:flex; flex-direction: column;">
+  <h4>Views</h4>
+  <a [routerLink]="[createLink('/commentators'), routeParams]" class="menuElement">Commentators</a>
+  <a [routerLink]="[createLink('/aggregations'), routeParams]" class="menuElement">Aggregations</a>
+</div>
+<div id="filters">
+  <h4>Filters</h4>
+  <app-filter></app-filter>
 </div>

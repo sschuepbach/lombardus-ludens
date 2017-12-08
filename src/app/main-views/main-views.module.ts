@@ -13,7 +13,6 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     ResultlistModule,
-    FiltersModule,
     MaterialModule,
     NgbModule,
     RouterModule.forChild([

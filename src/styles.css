@@ -1,2 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+div.mat-checkbox-inner-container {
+  height:10px;
+  width:10px;
+}
+
+.mat-checkbox-layout .mat-checkbox-label {
+  line-height:8px;
+}
+
+span.mat-checkbox-label {
+  font-weight:200;
+  font-size:12px;
+}
+
+.material-icons.small-icon {
+  font-size:13px;
+}

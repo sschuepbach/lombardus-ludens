@@ -21,12 +21,14 @@ import { MainComponent } from './main/main.component';
 import { NavigationMenuComponent } from './navigation-menu/navigation-menu.component';
 import { OpenMenuService } from './open-menu.service';
 import { RouteTrackingService } from '../shared/routing/route-tracking.service';
+import { FiltersModule } from '../filters/filters.module';
 
 @NgModule({
   imports: [
     CommonModule,
     HttpClientModule,
     MainViewsModule,
+    FiltersModule,
     ReactiveFormsModule,
     MaterialModule,
     NgbModule.forRoot(),

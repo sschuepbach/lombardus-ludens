@@ -1,6 +1,9 @@
 <form [formGroup]="filterForm" novalidate>
-  <h4>Affiliations</h4>
-  <div formGroupName="affiliations">
+  <h5 [ngStyle]="{'margin': closedFilterView ? '0' : '10px'}" (click)="toggleFilterView('affiliations')" class="expandable">
+    Affiliations
+    <mat-icon class="small-icon">{{closedFilterView('affiliations') ? 'arrow_drop_down' : 'arrow_drop_up'}}</mat-icon>
+  </h5>
+  <div formGroupName="affiliations" *ngIf="closedFilterView('affiliations')">
     <ul>
       <li *ngFor="let a of serialiseObjectAsArray(affiliations)">
         <mat-checkbox [formControlName]="a.key">
@@ -9,8 +12,11 @@
       </li>
     </ul>
   </div>
-  <h4>Periods</h4>
-  <div formGroupName="periods">
+  <h5 [ngStyle]="{'margin': closedFilterView ? '0' : '10px'}" (click)="toggleFilterView('periods')" class="expandable">
+    Periods
+    <mat-icon class="small-icon">{{closedFilterView('periods') ? 'arrow_drop_down' : 'arrow_drop_up'}}</mat-icon>
+  </h5>
+  <div formGroupName="periods" *ngIf="closedFilterView('periods')">
     <ul>
       <li *ngFor="let p of serialiseObjectAsArray(periods)">
         <mat-checkbox [formControlName]="p.key">
