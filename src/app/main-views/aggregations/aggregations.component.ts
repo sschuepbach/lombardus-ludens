@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ResultStreamerService } from '../../shared/searchutils/result-streamer.service';
-import { Bucket, CounterService, Sorting } from '../../shared/aggregations/counter.service';
+import { CounterService, Sorting } from '../../shared/aggregations/counter.service';
 import { Commentator } from '../../shared/models/commentator';
 import { LibrariesExtractor, TownsExtractor } from '../../shared/aggregations/ElementExtractor';
+
+interface Bucket {
+  key: string;
+  value: number;
+}
 
 @Component({
   selector: 'app-aggregations',

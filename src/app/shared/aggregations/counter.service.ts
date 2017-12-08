@@ -7,11 +7,6 @@ export enum Sorting {
   BYCOUNT
 }
 
-export interface Bucket {
-  key: string;
-  value: number;
-}
-
 @Injectable()
 export class CounterService {
   private extractors: ElementExtractor[] = [];
@@ -60,10 +55,6 @@ export class CounterService {
       return tempRes.sort((a, b) => CounterService.sortArrayByCounts(a, b));
     }
     return tempRes;
-  }
-
-  totalResults() {
-    return this.buckets.length;
   }
 
   private scan(c: Commentator) {

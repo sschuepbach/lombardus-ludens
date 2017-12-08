@@ -28,7 +28,7 @@ export class SearchfieldComponent {
       .filter(x => x.length >= 3)
       .debounceTime(500)
       .switchMap(searchString => {
-        rts.updateSearchTerm(searchString);
+        rts.updateUrlSearchParamFromSearchfield(searchString);
         return retrieveData.getData(searchString);
       })
       .subscribe(
@@ -42,5 +42,8 @@ export class SearchfieldComponent {
         },
         err => console.log(`Can't get results. Error code: %s, URL: %s`, err.message, err.url),
         () => console.log('Results retrieved'));
+    this.rts.searchParamStream$.subscribe(
+      x => this.searchInput.setValue(x)
+    );
   }
 }

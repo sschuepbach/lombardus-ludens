@@ -24,6 +24,7 @@ export class FilterComponent {
   periodsMetadata = PeriodsFormGroupMetadata;
   affiliations = AffiliationsFormGroupData;
   affiliationsMetadata = AffiliationsFormGroupMetadata;
+  closedFilterViews = [];
 
   static updateCountsInFilterFormMetadata(bucketAsArray: any[], metadataObj: any, formData: FormGroup) {
     for (const k of Object.keys(metadataObj)) {
@@ -52,6 +53,7 @@ export class FilterComponent {
       .register(new AffiliationsExtractor('AffiliationsExtractor'));
     results.resultStream$.subscribe(res => {
       counter.aggregate(res);
+      // this.filterForm.markAsDirty();
       FilterComponent.updateCountsInFilterFormMetadata(counter.getType('PeriodExtractor'),
         this.periodsMetadata,
         (this.filterForm.get('periods') as FormGroup));
@@ -64,9 +66,16 @@ export class FilterComponent {
       .subscribe(res => {
         if (this.filterForm.dirty) {
           results.updateFilters(res);
-          rts.updateFilters(res);
+          rts.updateUrlFilterParamsFromCheckboxes(res);
         }
       });
+    this.rts.filterParamsStream$.subscribe(x => {
+      x.forEach(y => {
+        if (this.filterForm.get(y)) {
+          this.filterForm.get(y).setValue(false);
+        }
+      });
+    });
   }
 
   createForm() {
@@ -84,6 +93,18 @@ export class FilterComponent {
       res.push({ key: o, value: obj[ o ] });
     }
     return res;
+  }
+
+  toggleFilterView(filterName: string) {
+    if (this.closedFilterViews.indexOf(filterName) > -1) {
+      this.closedFilterViews = this.closedFilterViews.filter(x => x !== filterName);
+    } else {
+      this.closedFilterViews.push(filterName);
+    }
+  }
+
+  closedFilterView(filterName: string) {
+    return this.closedFilterViews.indexOf(filterName) > -1;
   }
 
 }

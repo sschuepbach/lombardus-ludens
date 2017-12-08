@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RouteTrackingService } from '../../shared/routing/route-tracking.service';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-navigation-menu',
@@ -7,7 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationMenuComponent implements OnInit {
 
-  constructor() { }
+  routeParams: any = {};
+
+  constructor(rts: RouteTrackingService, route: ActivatedRoute) {
+    rts.routeParamsStream$.subscribe(params =>
+      this.routeParams = params
+    );
+  }
 
   ngOnInit() {
   }
