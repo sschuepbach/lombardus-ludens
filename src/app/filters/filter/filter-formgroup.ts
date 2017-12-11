@@ -1,13 +1,13 @@
 export const PeriodsFormGroupData = {
-  f1150: { value: true, disabled: true },
-  f1250: { value: true, disabled: true },
-  f1300: { value: true, disabled: true },
-  f1330: { value: true, disabled: true },
-  f1360: { value: true, disabled: true },
-  f1400: { value: true, disabled: true },
-  f1500: { value: true, disabled: true },
-  discarded: { value: true, disabled: true },
-  uncertain: { value: true, disabled: true }
+  f1150: { value: true, disabled: false },
+  f1250: { value: true, disabled: false },
+  f1300: { value: true, disabled: false },
+  f1330: { value: true, disabled: false },
+  f1360: { value: true, disabled: false },
+  f1400: { value: true, disabled: false },
+  f1500: { value: true, disabled: false },
+  discarded: { value: true, disabled: false },
+  uncertain: { value: true, disabled: false }
 };
 
 export const PeriodsFormGroupMetadata = {
@@ -23,16 +23,16 @@ export const PeriodsFormGroupMetadata = {
 };
 
 export const AffiliationsFormGroupData = {
-  Albertist: { value: true, disabled: true },
-  Humanist: { value: true, disabled: true },
-  Nominalist: { value: true, disabled: true },
-  OCarm: { value: true, disabled: true },
-  OCarth: { value: true, disabled: true },
-  OCist: { value: true, disabled: true },
-  OESA: { value: true, disabled: true },
-  OFM: { value: true, disabled: true },
-  OP: { value: true, disabled: true },
-  Scotist: { value: true, disabled: true }
+  Albertist: { value: true, disabled: false },
+  Humanist: { value: true, disabled: false },
+  Nominalist: { value: true, disabled: false },
+  OCarm: { value: true, disabled: false },
+  OCarth: { value: true, disabled: false },
+  OCist: { value: true, disabled: false },
+  OESA: { value: true, disabled: false },
+  OFM: { value: true, disabled: false },
+  OP: { value: true, disabled: false },
+  Scotist: { value: true, disabled: false }
 };
 
 export const AffiliationsFormGroupMetadata = {

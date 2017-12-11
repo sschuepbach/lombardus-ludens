@@ -26,20 +26,10 @@ export class FilterComponent {
   affiliationsMetadata = AffiliationsFormGroupMetadata;
   closedFilterViews = [];
 
-  static updateCountsInFilterFormMetadata(bucketAsArray: any[], metadataObj: any, formData: FormGroup) {
+  static updateCountsInFilterFormMetadata(bucketAsArray: any[], metadataObj: any) {
     for (const k of Object.keys(metadataObj)) {
       const matchingNameInCount = bucketAsArray.filter(x => x.key === metadataObj[ k ].title);
-      if (matchingNameInCount.length > 0) {
-        metadataObj[ k ].count = matchingNameInCount[ 0 ].value;
-        if (formData.get(k).disabled) {
-          formData.get(k).enable();
-        }
-      } else {
-        metadataObj[ k ].count = 0;
-        if (formData.get(k).enabled && formData.get(k).value) {
-          formData.get(k).disable();
-        }
-      }
+      metadataObj[ k ].count = matchingNameInCount.length > 0 ? matchingNameInCount[ 0 ].value : 0;
     }
   }
 
@@ -53,13 +43,14 @@ export class FilterComponent {
       .register(new AffiliationsExtractor('AffiliationsExtractor'));
     results.resultStream$.subscribe(res => {
       counter.aggregate(res);
-      // this.filterForm.markAsDirty();
-      FilterComponent.updateCountsInFilterFormMetadata(counter.getType('PeriodExtractor'),
-        this.periodsMetadata,
-        (this.filterForm.get('periods') as FormGroup));
-      FilterComponent.updateCountsInFilterFormMetadata(counter.getType('AffiliationsExtractor'),
-        this.affiliationsMetadata,
-        (this.filterForm.get('affiliations') as FormGroup));
+      FilterComponent.updateCountsInFilterFormMetadata(
+        counter.getType('PeriodExtractor'),
+        this.periodsMetadata
+      );
+      FilterComponent.updateCountsInFilterFormMetadata(
+        counter.getType('AffiliationsExtractor'),
+        this.affiliationsMetadata
+      );
     });
     this.filterForm
       .valueChanges
