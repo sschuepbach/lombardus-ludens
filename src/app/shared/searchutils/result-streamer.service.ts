@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Commentator } from '../models/commentator';
 import { AffiliationsFormGroupMetadata, PeriodsFormGroupMetadata } from '../../filters/filter/filter-formgroup';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { RouteTrackingService } from '../routing/route-tracking.service';
 
 @Injectable()
 export class ResultStreamerService {
@@ -63,7 +64,9 @@ export class ResultStreamerService {
       filters[ 'periods' ],
       PeriodsFormGroupMetadata
     );
-    this.filterResultStream();
+    if (this.results) {
+      this.filterResultStream();
+    }
   }
 
 }

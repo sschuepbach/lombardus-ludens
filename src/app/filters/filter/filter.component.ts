@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { CounterService } from '../../shared/aggregations/counter.service';
 import { ResultStreamerService } from '../../shared/searchutils/result-streamer.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -17,7 +17,7 @@ import { RouteTrackingService } from '../../shared/routing/route-tracking.servic
   templateUrl: './filter.component.html',
   styleUrls: [ './filter.component.scss' ]
 })
-export class FilterComponent {
+export class FilterComponent implements AfterViewInit {
 
   filterForm: FormGroup;
   periods = PeriodsFormGroupData;
@@ -52,14 +52,7 @@ export class FilterComponent {
         this.affiliationsMetadata
       );
     });
-    this.filterForm
-      .valueChanges
-      .subscribe(res => {
-        if (this.filterForm.dirty) {
-          results.updateFilters(res);
-          rts.updateUrlFilterParamsFromCheckboxes(res);
-        }
-      });
+
     this.rts.filterParamsStream$.subscribe(x => {
       x.forEach(y => {
         if (this.filterForm.get(y)) {
@@ -67,6 +60,17 @@ export class FilterComponent {
         }
       });
     });
+  }
+
+  ngAfterViewInit() {
+    this.filterForm
+      .valueChanges
+      .subscribe(res => {
+        this.results.updateFilters(res);
+        if (this.filterForm.dirty) {
+          this.rts.updateUrlFilterParamsFromCheckboxes(res);
+        }
+      });
   }
 
   createForm() {
