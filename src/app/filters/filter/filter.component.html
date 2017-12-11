@@ -1,7 +1,7 @@
 <form [formGroup]="filterForm" novalidate>
   <h5 [ngStyle]="{'margin': closedFilterView ? '0' : '10px'}" (click)="toggleFilterView('affiliations')" class="expandable">
-    Affiliations
     <mat-icon class="small-icon">{{closedFilterView('affiliations') ? 'arrow_drop_down' : 'arrow_drop_up'}}</mat-icon>
+    Affiliations
   </h5>
   <div formGroupName="affiliations" *ngIf="closedFilterView('affiliations')">
     <ul>
@@ -13,8 +13,8 @@
     </ul>
   </div>
   <h5 [ngStyle]="{'margin': closedFilterView ? '0' : '10px'}" (click)="toggleFilterView('periods')" class="expandable">
-    Periods
     <mat-icon class="small-icon">{{closedFilterView('periods') ? 'arrow_drop_down' : 'arrow_drop_up'}}</mat-icon>
+    Periods
   </h5>
   <div formGroupName="periods" *ngIf="closedFilterView('periods')">
     <ul>
