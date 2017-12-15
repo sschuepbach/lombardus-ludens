@@ -1,4 +1,4 @@
-<h2>Matrix aggretation</h2>
+<h2>Matrix aggregation</h2>
 <p>1) Choose two categories for aggregation</p>
 <form [formGroup]="filterForm" novalidate>
   <mat-form-field>
@@ -16,7 +16,7 @@
     </mat-select>
   </mat-form-field>
 </form>
-<span *ngIf="dataMatrix">
+<span *ngIf="dataMatrix" style="margin-top:35px;">
   <p>2) Click on respective field to get more information</p>
   <app-matrix [dataMatrix]="dataMatrix"></app-matrix>
 </span>

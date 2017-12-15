@@ -7,7 +7,7 @@
     <th class="th-vertical">{{dataMatrix.yLabels[i]}}</th>
     <td *ngFor="let v of row; let j=index">
       <span class="cell-content" placement="top" [ngbPopover]="getNamesOfCommentators(v)"
-            [popoverTitle]="dataMatrix.yLabels[i] + ' \\ ' + dataMatrix.xLabels[j]" *ngIf="v.length > 0">{{v.length}}</span>
+            [popoverTitle]="dataMatrix.yLabels[i] + ' | ' + dataMatrix.xLabels[j]" *ngIf="v.length > 0">{{v.length}}</span>
     </td>
   </tr>
 </table>
