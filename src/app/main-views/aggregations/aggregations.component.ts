@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { ResultStreamerService } from '../../shared/searchutils/result-streamer.service';
-import { CounterService, Sorting } from '../../shared/aggregations/counter.service';
+import { AggregatorService, Sorting, ValueShape } from '../../shared/aggregations/aggregator.service';
 import { Commentator } from '../../shared/models/commentator';
 import { LibrariesExtractor, TownsExtractor } from '../../shared/aggregations/ElementExtractor';
 
 interface Bucket {
   key: string;
-  value: number;
+  value: number | number[];
 }
 
 @Component({
   selector: 'app-aggregations',
   templateUrl: './aggregations.component.html',
-  providers: [ CounterService ]
+  providers: [ AggregatorService ]
 })
 export class AggregationsComponent implements OnInit {
 
@@ -22,16 +22,16 @@ export class AggregationsComponent implements OnInit {
   libraries: Bucket[];
   alphabeticallySorted = true;
 
-  constructor(private rs: ResultStreamerService, private counter: CounterService) {
+  constructor(private rs: ResultStreamerService, private counter: AggregatorService) {
     counter
       .register(new TownsExtractor('TownsExtractor'))
       .register(new LibrariesExtractor('LibrariesExtractor'));
     rs.resultStream$.subscribe(res => {
       counter.aggregate(res);
       this.results = res;
-      this.libraries = counter.getType('LibrariesExtractor');
-      this.townsAlphabetically = counter.getType('TownsExtractor', Sorting.ALPHABETICALLY);
-      this.townsByCount = counter.getType('TownsExtractor', Sorting.BYCOUNT);
+      this.libraries = counter.getType('LibrariesExtractor', ValueShape.COUNTS);
+      this.townsAlphabetically = counter.getType('TownsExtractor', ValueShape.COUNTS, Sorting.ALPHABETICALLY);
+      this.townsByCount = counter.getType('TownsExtractor', ValueShape.COUNTS, Sorting.BYCOUNT);
     });
   }
 

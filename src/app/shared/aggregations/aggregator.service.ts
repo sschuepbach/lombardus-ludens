@@ -7,13 +7,19 @@ export enum Sorting {
   BYCOUNT
 }
 
+export enum ValueShape {
+  COUNTS,
+  POINTERS
+}
+
+
 @Injectable()
-export class CounterService {
+export class AggregatorService {
   private extractors: ElementExtractor[] = [];
   private buckets: {
     elemType: string,
     name: string,
-    count: number
+    pointers: number[]
   }[];
   private totalResultsCounter;
 
@@ -32,7 +38,7 @@ export class CounterService {
     } else if (a.value > b.value) {
       return -1;
     }
-    return CounterService.sortArrayAlphabetically(a, b);
+    return AggregatorService.sortArrayAlphabetically(a, b);
   }
 
   register(e: ElementExtractor): this {
@@ -42,33 +48,32 @@ export class CounterService {
 
   aggregate(cc: Commentator[]) {
     this.reset();
-    cc.forEach(c => this.scan(c));
+    this.totalResultsCounter = cc.length;
+    cc.forEach((c, i) => this.scan(c, i));
   }
 
-  getType(elementType: string, sort?: Sorting) {
+  getType(elementType: string, valueShape?: ValueShape, sort?: Sorting) {
     const tempRes = this.buckets
       .filter(x => x.elemType === elementType)
-      .map(x => ({ key: x.name, value: x.count }));
+      .map(x => ({ key: x.name, value: valueShape === ValueShape.POINTERS ? x.pointers : x.pointers.length }));
     if (sort === Sorting.ALPHABETICALLY) {
-      return tempRes.sort((a, b) => CounterService.sortArrayAlphabetically(a, b));
-    } else if (sort === Sorting.BYCOUNT) {
-      return tempRes.sort((a, b) => CounterService.sortArrayByCounts(a, b));
+      return tempRes.sort((a, b) => AggregatorService.sortArrayAlphabetically(a, b));
+    } else if (sort === Sorting.BYCOUNT && valueShape === ValueShape.COUNTS) {
+      return tempRes.sort((a, b) => AggregatorService.sortArrayByCounts(a, b));
     }
     return tempRes;
   }
 
-  private scan(c: Commentator) {
-    this.totalResultsCounter += 1;
+  private scan(c: Commentator, index: number) {
     if (this.extractors) {
       this.extractors
         .reduce((x, y) =>
-          x.concat(y.extract()(c).map(z => ({ elemType: y.category, name: z, count: 1 }))), []
-        )
-        .forEach(x => {
-            const inBuckets = this.inBuckets(x.name, x.elemType);
-            inBuckets > -1 ? this.buckets[ inBuckets ].count += 1 : this.buckets.push(x);
-          }
-        );
+          x.concat(y.extract()(c).map(z => ({ elemType: y.category, name: z, pointers: [index] }))), [])
+        .map(x => {
+          const inBuckets = this.inBuckets(x.name, x.elemType);
+          inBuckets > -1 ? this.buckets[ inBuckets ].pointers.push(x.pointers[ 0 ]) : this.buckets.push(x);
+
+        });
     }
   }
 

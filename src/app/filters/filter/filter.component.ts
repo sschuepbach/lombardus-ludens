@@ -1,5 +1,5 @@
 import { AfterViewInit, Component } from '@angular/core';
-import { CounterService } from '../../shared/aggregations/counter.service';
+import { AggregatorService, ValueShape } from '../../shared/aggregations/aggregator.service';
 import { ResultStreamerService } from '../../shared/searchutils/result-streamer.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import {
@@ -16,7 +16,7 @@ import { RouteTrackingService } from '../../shared/routing/route-tracking.servic
   selector: 'app-filter',
   templateUrl: './filter.component.html',
   styleUrls: [ './filter.component.scss' ],
-  providers: [ CounterService ]
+  providers: [ AggregatorService ]
 })
 export class FilterComponent implements AfterViewInit {
 
@@ -35,7 +35,7 @@ export class FilterComponent implements AfterViewInit {
   }
 
   constructor(private results: ResultStreamerService,
-              private counter: CounterService,
+              private counter: AggregatorService,
               private fb: FormBuilder,
               private rts: RouteTrackingService) {
     this.createForm();
@@ -45,11 +45,11 @@ export class FilterComponent implements AfterViewInit {
     results.resultStream$.subscribe(res => {
       counter.aggregate(res);
       FilterComponent.updateCountsInFilterFormMetadata(
-        counter.getType('PeriodExtractor'),
+        counter.getType('PeriodExtractor', ValueShape.COUNTS),
         this.periodsMetadata
       );
       FilterComponent.updateCountsInFilterFormMetadata(
-        counter.getType('AffiliationsExtractor'),
+        counter.getType('AffiliationsExtractor', ValueShape.COUNTS),
         this.affiliationsMetadata
       );
     });
