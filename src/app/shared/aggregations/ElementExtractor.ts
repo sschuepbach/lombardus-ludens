@@ -1,10 +1,13 @@
 import { Commentator } from '../models/commentator';
+import { Earlyprint, Item, Manuscript } from '../models/item';
 
 export abstract class ElementExtractor {
   readonly category: string;
+
   constructor(category: string) {
     this.category = category;
   }
+
   abstract extract(): (Commentator) => string[];
 }
 
@@ -40,5 +43,31 @@ export class TownsExtractor extends ElementExtractor {
 
   extract(): (Commentator) => string[] {
     return c => TownsExtractor.getTownsFromCommentator(c);
+  }
+}
+
+export class CommentatorNameExtractor extends ElementExtractor {
+  extract(): (Commentator) => string[] {
+    return c => [c.name];
+  }
+}
+
+export class ManuscriptTypeExtractor extends ElementExtractor {
+
+  private static mapManuscriptTypeToLabel(manuscriptType: Item) {
+    if (manuscriptType instanceof Manuscript) {
+      return 'manuscript';
+    } else if (manuscriptType instanceof Earlyprint) {
+      return 'early-print';
+    }
+    return 'modern-edition';
+  }
+
+  private static getManuscriptTypesFromCommentator(c: Commentator): string[] {
+    return c.commentaries.reduce((x, y) => x.concat(y.manifestations.map(z => this.mapManuscriptTypeToLabel(z.getItem()))), []);
+  }
+
+  extract(): (Commentator) => string[] {
+    return c => ManuscriptTypeExtractor.getManuscriptTypesFromCommentator(c);
   }
 }
