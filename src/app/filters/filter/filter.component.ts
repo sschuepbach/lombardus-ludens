@@ -15,7 +15,8 @@ import { RouteTrackingService } from '../../shared/routing/route-tracking.servic
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
-  styleUrls: [ './filter.component.scss' ]
+  styleUrls: [ './filter.component.scss' ],
+  providers: [ CounterService ]
 })
 export class FilterComponent implements AfterViewInit {
 

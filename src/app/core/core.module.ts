@@ -11,7 +11,6 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { SearchfieldComponent } from './searchfield/searchfield.component';
 import { RetrieveDataService } from '../shared/searchutils/retrieve-data.service';
-import { CounterService } from '../shared/aggregations/counter.service';
 import { ResultStreamerService } from '../shared/searchutils/result-streamer.service';
 import { CachingInterceptorService } from '../shared/cache/caching-interceptor.service';
 import { MapResultToModelService } from '../shared/models/map-result-to-model.service';
@@ -45,7 +44,6 @@ import { FiltersModule } from '../filters/filters.module';
     NavigationMenuComponent
   ],
   providers: [
-    CounterService,
     HttpCacheService,
     MapResultToModelService,
     ResultStreamerService,

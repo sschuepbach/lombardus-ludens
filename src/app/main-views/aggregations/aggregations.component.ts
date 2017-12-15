@@ -11,7 +11,8 @@ interface Bucket {
 
 @Component({
   selector: 'app-aggregations',
-  templateUrl: './aggregations.component.html'
+  templateUrl: './aggregations.component.html',
+  providers: [ CounterService ]
 })
 export class AggregationsComponent implements OnInit {
 
