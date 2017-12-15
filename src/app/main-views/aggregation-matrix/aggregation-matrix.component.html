@@ -1,0 +1,22 @@
+<h2>Matrix aggretation</h2>
+<p>1) Choose two categories for aggregation</p>
+<form [formGroup]="filterForm" novalidate>
+  <mat-form-field>
+    <mat-select placeholder="X-axis" formControlName="xaxis" #xaxis>
+      <mat-option *ngFor="let c of filterCategories" [value]="c.name" [disabled]="c.name === yaxis.value">
+        {{ c.label }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Y-axis" formControlName="yaxis" #yaxis>
+      <mat-option *ngFor="let c of filterCategories" [value]="c.name" [disabled]="c.name === xaxis.value">
+        {{ c.label }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>
+<span *ngIf="dataMatrix">
+  <p>2) Click on respective field to get more information</p>
+  <app-matrix [dataMatrix]="dataMatrix"></app-matrix>
+</span>

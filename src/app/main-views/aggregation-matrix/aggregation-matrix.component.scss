@@ -1,0 +1,22 @@
+.div-table {
+  display: table;
+  width: auto;
+  background-color: #eee;
+  border: 1px solid;
+}
+
+.div-table-row {
+  display: table-row;
+  width: auto;
+  clear: both;
+}
+
+.div-table-col {
+  float: left;
+  display: table-column;
+  width: 200px;
+}
+
+.div-table-caption {
+  background-color: #888;
+}
