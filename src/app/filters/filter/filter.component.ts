@@ -26,6 +26,10 @@ export class FilterComponent implements AfterViewInit {
   affiliations = AffiliationsFormGroupData;
   affiliationsMetadata = AffiliationsFormGroupMetadata;
   closedFilterViews = [];
+  pristineFilter = {
+    affiliations: true,
+    periods: true
+  };
 
   static updateCountsInFilterFormMetadata(bucketAsArray: any[], metadataObj: any) {
     for (const k of Object.keys(metadataObj)) {
@@ -60,6 +64,7 @@ export class FilterComponent implements AfterViewInit {
           this.filterForm.get(y).setValue(false);
         }
       });
+      this.disableCheckboxIfUniquelyCheckedInCategory(x);
     });
   }
 
@@ -103,4 +108,61 @@ export class FilterComponent implements AfterViewInit {
     return this.closedFilterViews.indexOf(filterName) > -1;
   }
 
+  setPostPristineFilter(filterCategory: string, filter: string) {
+    if (this.pristineFilter[ filterCategory ]) {
+      this.setValueOfOtherFiltersInCategory(filterCategory, filter, false);
+      this.filterForm.get([ filterCategory, filter ]).setValue(true);
+      this.filterForm.get([ filterCategory, filter ]).disable();
+      this.pristineFilter[ filterCategory ] = false;
+    } else {
+      if (!this.filterForm.get(filterCategory).get(filter).value) {
+        if (this.getValueOfOtherFiltersInCategory(filterCategory, filter).true.length <= 1) {
+          this.filterForm
+            .get([ filterCategory, this.getValueOfOtherFiltersInCategory(filterCategory, filter).true[ 0 ] ])
+            .disable();
+        }
+      } else {
+        this.filterForm.get(filterCategory).enable();
+      }
+    }
+  }
+
+  private setValueOfOtherFiltersInCategory(pathToBaseFilter: string, baseFilterName: string, newValue: boolean) {
+    Object.keys((this.filterForm.get(pathToBaseFilter) as FormGroup).getRawValue())
+      .filter(x => x !== baseFilterName)
+      .forEach(x => this.filterForm.get([ pathToBaseFilter, x ]).setValue(newValue));
+  }
+
+  private getValueOfOtherFiltersInCategory(pathToBaseFilter: string, excludedFilter?: string) {
+    return Object.keys((this.filterForm.get(pathToBaseFilter) as FormGroup).getRawValue())
+      .filter(x => x !== excludedFilter)
+      .reduce((x, y) => {
+        this.filterForm.get([ pathToBaseFilter, y ]).value ? x.true.push(y) : x.false.push(y);
+        return x;
+      }, {
+        true: [],
+        false: []
+      });
+  }
+
+  private disableCheckboxIfUniquelyCheckedInCategory(setFilters: string[]) {
+    const categories = setFilters.reduce((x, y) => {
+      const category = y.split('.')[ 0 ];
+      if (x.indexOf(category) === -1) {
+        x.push(category);
+      }
+      return x;
+    }, []);
+    for (const cat of categories) {
+      if (setFilters.filter(y => y.split('.')[ 0 ] === cat).length > 0 && this.pristineFilter[ cat ]) {
+        if (this.getValueOfOtherFiltersInCategory(cat).true.length === 1) {
+          this.filterForm.get([
+            cat,
+            this.getValueOfOtherFiltersInCategory(cat).true[ 0 ]
+          ]).disable();
+        }
+      }
+      this.pristineFilter[cat] = false;
+    }
+  }
 }

@@ -6,7 +6,7 @@
   <div formGroupName="affiliations" *ngIf="closedFilterView('affiliations')">
     <ul>
       <li *ngFor="let a of serialiseObjectAsArray(affiliations)">
-        <mat-checkbox [formControlName]="a.key">
+        <mat-checkbox [formControlName]="a.key" (change)="setPostPristineFilter('affiliations', a.key)">
           {{affiliationsMetadata[a.key].title}} ({{affiliationsMetadata[a.key].count}})
         </mat-checkbox>
       </li>
@@ -19,7 +19,7 @@
   <div formGroupName="periods" *ngIf="closedFilterView('periods')">
     <ul>
       <li *ngFor="let p of serialiseObjectAsArray(periods)">
-        <mat-checkbox [formControlName]="p.key">
+        <mat-checkbox [formControlName]="p.key" (change)="setPostPristineFilter('periods', p.key)">
           {{periodsMetadata[p.key].title}} ({{periodsMetadata[p.key].count}})
         </mat-checkbox>
       </li>
