@@ -21,6 +21,7 @@ import { NavigationMenuComponent } from './navigation-menu/navigation-menu.compo
 import { OpenMenuService } from './open-menu.service';
 import { RouteTrackingService } from '../shared/routing/route-tracking.service';
 import { FiltersModule } from '../filters/filters.module';
+import { NavigationHistoryComponent } from './navigation-history/navigation-history.component';
 
 @NgModule({
   imports: [
@@ -41,7 +42,8 @@ import { FiltersModule } from '../filters/filters.module';
     SearchfieldComponent,
     PageNotFoundComponent,
     MainComponent,
-    NavigationMenuComponent
+    NavigationMenuComponent,
+    NavigationHistoryComponent
   ],
   providers: [
     HttpCacheService,

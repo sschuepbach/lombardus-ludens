@@ -1,0 +1,20 @@
+<ul>
+  <li *ngFor="let e of linkHistory.asArray().reverse(); let i=index;">
+    <span class="additional-info" (click)="e.opened = !e.opened"
+          [ngStyle]="{'border-radius': e.opened ? '3px 0 0 0' : '3px 0 0 3px'}">
+      {{e.opened ? '&#x25B2;' : '&#x25BC;'}}
+    </span>
+    <a [routerLink]="[e.baseLink, e.linkParams]">
+      <div class="link-list-element">
+        {{e.title}}
+      </div>
+    </a>
+    <span class="close-icon" (click)="linkHistory.dequeue(linkHistory.length() - 1 - i)"
+          [ngStyle]="{'border-radius': e.opened ? '0 3px 0 0' : '0 3px 3px 0'}">
+      &#215;
+    </span>
+    <div class="raw-link-box" *ngIf="e.opened">
+      {{e.rawLink}}
+    </div>
+  </li>
+</ul>

@@ -19,6 +19,7 @@ export class RouteTrackingService {
   private searchParam = '';
   private filterParams: string[] = [];
   private currentRouteSegments: string;
+  private currentRoute: string;
   private routesHistory: RouteToken[] = [];
 
   private static traverseObject(obj: any, path?: string) {
@@ -46,9 +47,9 @@ export class RouteTrackingService {
     router.events.subscribe(res => {
       if (res instanceof NavigationEnd) {
         this.routesHistory.unshift({ id: res.id, route: res.urlAfterRedirects });
-        const newRouteSegments = res.urlAfterRedirects.split(';')[ 0 ];
-        if (newRouteSegments !== this.currentRouteSegments) {
-          this.currentRouteSegments = newRouteSegments;
+        if (this.currentRoute !== res.urlAfterRedirects) {
+          this.currentRoute = res.urlAfterRedirects;
+          this.currentRouteSegments = res.urlAfterRedirects.split(';')[ 0 ];
           this.updateSearchfieldFromUrlSearchParam(res.urlAfterRedirects);
           this.updateCheckboxesFromUrlFilterParams(res.urlAfterRedirects);
         }
