@@ -52,7 +52,7 @@ class Queue<T> {
 })
 export class NavigationHistoryComponent implements OnInit {
 
-  linkHistory: Queue = new Queue<Link>(20);
+  linkHistory: Queue<Link> = new Queue<Link>(20);
 
   constructor(private route: ActivatedRoute, private router: Router) {
     router.events.subscribe(event => {
