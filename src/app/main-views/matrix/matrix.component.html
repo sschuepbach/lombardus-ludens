@@ -3,10 +3,16 @@
     <th></th>
     <th *ngFor="let xl of dataMatrix.xLabels">{{xl}}</th>
   </tr>
+
   <tr *ngFor="let row of dataMatrix.matrix; let i=index">
     <th class="th-vertical">{{dataMatrix.yLabels[i]}}</th>
     <td *ngFor="let v of row; let j=index">
-      <span class="cell-content" placement="top" [ngbPopover]="getNamesOfCommentators(v)"
+      <ng-template #popoverContent>
+        <ul>
+          <li *ngFor="let e of v">{{e.name}}</li>
+        </ul>
+      </ng-template>
+      <span class="cell-content" placement="bottom" [ngbPopover]="popoverContent"
             [popoverTitle]="dataMatrix.yLabels[i] + ' | ' + dataMatrix.xLabels[j]" *ngIf="v.length > 0">{{v.length}}</span>
     </td>
   </tr>

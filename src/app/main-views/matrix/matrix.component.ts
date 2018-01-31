@@ -50,6 +50,6 @@ export class MatrixComponent {
   @Input() dataMatrix: Matrix;
 
   getNamesOfCommentators(v: any): string {
-    return v.constructor === Array ? v.reduce((x, y, i) => x + (i === 0 ? '' : ', ') + y.name, '') : '';
+    return v.constructor === Array ? '<ul>' + v.reduce((x, y, i) => x + '<li>' + y.name + '</li>', '') + '</ul>' : '';
   }
 }
