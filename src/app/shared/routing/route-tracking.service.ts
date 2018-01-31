@@ -106,14 +106,6 @@ export class RouteTrackingService {
     return this.routeParams;
   }
 
-  getRoutesHistory(numberOfRoutes: number) {
-    return this.routesHistory.slice(0, numberOfRoutes);
-  }
-
-  deleteRouteElement(id: number) {
-    this.routesHistory = this.routesHistory.filter(x => x.id !== id);
-  }
-
   private updateRouteParams(): void {
     this.routeParamsStreamSource.next(
       Object.assign({ search: this.searchParam }, this.filterParams.reduce((x, y) => {

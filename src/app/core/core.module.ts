@@ -22,6 +22,7 @@ import { OpenMenuService } from './open-menu.service';
 import { RouteTrackingService } from '../shared/routing/route-tracking.service';
 import { FiltersModule } from '../filters/filters.module';
 import { NavigationHistoryComponent } from './navigation-history/navigation-history.component';
+import { UrlTrackerService } from '../shared/routing/url-tracker.service';
 
 @NgModule({
   imports: [
@@ -52,6 +53,7 @@ import { NavigationHistoryComponent } from './navigation-history/navigation-hist
     RetrieveDataService,
     OpenMenuService,
     RouteTrackingService,
+    UrlTrackerService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: CachingInterceptorService,

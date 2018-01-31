@@ -10,6 +10,7 @@ import {
 } from './filter-formgroup';
 import { AffiliationsExtractor, PeriodExtractor } from '../../shared/aggregations/ElementExtractor';
 import { RouteTrackingService } from '../../shared/routing/route-tracking.service';
+import { UrlTrackerService } from '../../shared/routing/url-tracker.service';
 
 
 @Component({
@@ -41,11 +42,15 @@ export class FilterComponent implements AfterViewInit {
   constructor(private results: ResultStreamerService,
               private counter: AggregatorService,
               private fb: FormBuilder,
-              private rts: RouteTrackingService) {
+              private rts: RouteTrackingService,
+              private ut: UrlTrackerService) {
     this.createForm();
     counter
       .register(new PeriodExtractor('PeriodExtractor'))
       .register(new AffiliationsExtractor('AffiliationsExtractor'));
+    ut.register('filters',
+      Object.assign(this.transformFormModelForUrlTracker(this.periods, 'periods'),
+        this.transformFormModelForUrlTracker(this.affiliations, 'affiliations')));
     results.resultStream$.subscribe(res => {
       counter.aggregate(res);
       FilterComponent.updateCountsInFilterFormMetadata(
@@ -58,14 +63,24 @@ export class FilterComponent implements AfterViewInit {
       );
     });
 
-    this.rts.filterParamsStream$.subscribe(x => {
-      x.forEach(y => {
-        if (this.filterForm.get(y)) {
-          this.filterForm.get(y).setValue(false);
-        }
-      });
-      this.disableCheckboxIfUniquelyCheckedInCategory(x);
+    ut.track('filters').subscribe(x => {
+      this.filterForm.patchValue(x);
+      console.log(this.filterForm);
+      this.disableCheckboxIfUniquelyCheckedInCategory(Object.keys(x).filter(key => x[key] === 'false' || !x[key]));
     });
+
+    /*    this.rts.filterParamsStream$.subscribe(x => {
+     console.log(x);
+     // TODO: What happens if filter values are false and become true?
+     // periods / affiliations
+     x.forEach(y => {
+     if (this.filterForm.get(y)) {
+     this.filterForm.get(y).setValue(false);
+     }
+     });
+     console.log(this.filterForm);
+     this.disableCheckboxIfUniquelyCheckedInCategory(x);
+     });*/
   }
 
   ngAfterViewInit() {
@@ -74,7 +89,8 @@ export class FilterComponent implements AfterViewInit {
       .subscribe(res => {
         this.results.updateFilters(res);
         if (this.filterForm.dirty) {
-          this.rts.updateUrlFilterParamsFromCheckboxes(res);
+          this.ut.propagate(res);
+          // this.rts.updateUrlFilterParamsFromCheckboxes(res);
         }
       });
   }
@@ -162,7 +178,22 @@ export class FilterComponent implements AfterViewInit {
           ]).disable();
         }
       }
-      this.pristineFilter[cat] = false;
+      this.pristineFilter[ cat ] = false;
     }
   }
+
+  private transformFormModelForUrlTracker(formModel: any, prefix: string) {
+    return Object.keys(formModel).reduce((x, y) => {
+      x[ prefix + '.' + y ] = formModel[ y ].value;
+      return x;
+    }, {});
+  }
+
+  private generateConcordanceListForUrlParams(formModel: any, prefix: string) {
+    return Object.keys(formModel).reduce((x, y) => {
+      x[ prefix + '_' + y ] = prefix + '.' + y;
+      return x;
+    }, {});
+  }
+
 }
