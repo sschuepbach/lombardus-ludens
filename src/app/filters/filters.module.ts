@@ -5,6 +5,7 @@ import { MaterialModule } from '../material.module';
 
 import { FilterComponent } from './filter/filter.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HistogramDirective } from './histogram.directive';
 
 @NgModule({
   imports: [
@@ -13,7 +14,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MaterialModule,
     NgbModule
   ],
-  declarations: [ FilterComponent ],
-  exports: [ FilterComponent ]
+  declarations: [
+    FilterComponent,
+    HistogramDirective
+  ],
+  exports: [
+    FilterComponent
+  ]
 })
 export class FiltersModule {}
