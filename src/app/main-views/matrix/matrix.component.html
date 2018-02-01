@@ -8,12 +8,16 @@
     <th class="th-vertical">{{dataMatrix.yLabels[i]}}</th>
     <td *ngFor="let v of row; let j=index">
       <ng-template #popoverContent>
+        <div class="close-wrapper">
+          <p class="close" (click)="closePopover()">close</p>
+        </div>
         <ul>
-          <li *ngFor="let e of v">{{e.name}}</li>
+          <li *ngFor="let e of v"><a [routerLink]="['/', 'detailView', e.oid ]">{{e.name}}</a></li>
         </ul>
       </ng-template>
-      <span class="cell-content" placement="bottom" [ngbPopover]="popoverContent"
-            [popoverTitle]="dataMatrix.yLabels[i] + ' | ' + dataMatrix.xLabels[j]" *ngIf="v.length > 0">{{v.length}}</span>
+      <span class="cell-content" container="body" placement="right-top" [ngbPopover]="popoverContent"
+            [popoverTitle]="dataMatrix.yLabels[i] + ' | ' + dataMatrix.xLabels[j]" *ngIf="v.length > 0"
+            #popover="ngbPopover" triggers="manual" (click)="addPopover(popover);">{{v.length}}</span>
     </td>
   </tr>
 </table>

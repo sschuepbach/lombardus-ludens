@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input } from '@angular/core';
 
 export class Matrix {
 
@@ -18,7 +18,7 @@ export class Matrix {
       facets.forEach(facet => {
         const rowPosition = this.yLabelsArray.indexOf(facet.key);
         if (rowPosition > -1) {
-          this.matrixArray[rowPosition][colPosition] = facet.value;
+          this.matrixArray[ rowPosition ][ colPosition ] = facet.value;
         }
       });
     } else {
@@ -47,9 +47,39 @@ export class Matrix {
 })
 export class MatrixComponent {
 
+  openPopover: any;
+
   @Input() dataMatrix: Matrix;
+
+  constructor(private elRef: ElementRef) {
+  }
 
   getNamesOfCommentators(v: any): string {
     return v.constructor === Array ? '<ul>' + v.reduce((x, y, i) => x + '<li>' + y.name + '</li>', '') + '</ul>' : '';
   }
+
+  closePopup() {
+    console.log(this.elRef.nativeElement.quer);
+  }
+
+  addPopover(p: any) {
+    if (this.openPopover) {
+      this.openPopover.close();
+      if (this.openPopover === p) {
+        this.openPopover = undefined;
+      } else {
+        p.open();
+        this.openPopover = p;
+      }
+    } else {
+      p.open();
+      this.openPopover = p;
+    }
+  }
+
+  closePopover() {
+    this.openPopover.close();
+    this.openPopover = undefined;
+  }
+
 }
