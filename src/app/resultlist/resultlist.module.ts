@@ -4,6 +4,7 @@ import { MaterialModule } from '../material.module';
 import { FiltersModule } from '../filters/filters.module';
 
 import { ResultlistComponent } from './resultlist/resultlist.component';
+import { ResultComponent } from './result/result.component';
 
 @NgModule({
   imports: [
@@ -11,7 +12,7 @@ import { ResultlistComponent } from './resultlist/resultlist.component';
     FiltersModule,
     MaterialModule
   ],
-  declarations: [ ResultlistComponent ],
+  declarations: [ ResultlistComponent, ResultComponent ],
   exports: [ ResultlistComponent ]
 })
 export class ResultlistModule {}
