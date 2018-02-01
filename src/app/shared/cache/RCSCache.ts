@@ -1,3 +1,5 @@
+import { Commentator } from '../models/commentator';
+
 interface Commentators {
   [index: string]: any;
 }

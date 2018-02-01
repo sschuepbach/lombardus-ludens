@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
 import { AggregationMatrixComponent } from './aggregation-matrix/aggregation-matrix.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatrixComponent } from './matrix/matrix.component';
+import { DetailViewComponent } from './detail-view/detail-view.component';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import { MatrixComponent } from './matrix/matrix.component';
       { path: 'aggregations', component: AggregationsComponent },
       { path: 'aggregation-matrix', component: AggregationMatrixComponent},
       { path: 'commentators', component: CommentatorsListComponent },
+      { path: 'detailView/:id', component: DetailViewComponent},
       { path: '', redirectTo: '/commentators', pathMatch: 'full' }
     ])
   ],
@@ -30,7 +32,8 @@ import { MatrixComponent } from './matrix/matrix.component';
     AggregationsComponent,
     CommentatorsListComponent,
     AggregationMatrixComponent,
-    MatrixComponent
+    MatrixComponent,
+    DetailViewComponent
   ],
   exports: [
     AggregationsComponent,
