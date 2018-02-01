@@ -15,4 +15,4 @@ import { ResultComponent } from './result/result.component';
   declarations: [ ResultlistComponent, ResultComponent ],
   exports: [ ResultlistComponent ]
 })
-export class ResultlistModule {}
+export class ResultsModule {}

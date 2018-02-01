@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ResultlistModule } from '../resultlist/resultlist.module';
+import { ResultsModule } from '../results/results.module';
 import { FiltersModule } from '../filters/filters.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MaterialModule } from '../material.module';
@@ -15,7 +15,7 @@ import { MatrixComponent } from './matrix/matrix.component';
 @NgModule({
   imports: [
     CommonModule,
-    ResultlistModule,
+    ResultsModule,
     MaterialModule,
     ReactiveFormsModule,
     NgbModule,
