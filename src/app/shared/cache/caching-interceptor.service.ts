@@ -16,14 +16,14 @@ export class CachingInterceptorService implements HttpInterceptor {
       return next.handle(req);
     }
 
-    const cachedResponse = this.cache.get(req);
+    const cachedResponse = this.cache.get();
     if (cachedResponse) {
       return Observable.of(cachedResponse);
     }
 
     return next.handle(req).do(event => {
       if (event instanceof HttpResponse) {
-        this.cache.put(req, event);
+        this.cache.put(event);
       }
     });
   }

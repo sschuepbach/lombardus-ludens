@@ -7,12 +7,12 @@ export class RetrieveDataService {
 
   constructor(private http: HttpClient) { }
 
-  getData(searchTerm: string) {
+  getData() {
     const httpHeaders = new HttpHeaders({ 'Accept': 'application/json' });
     httpHeaders.append('Content-Type', 'application/json');
     const httpRequest = new HttpRequest(
       'GET',
-      'https://rcs.philsem.unibas.ch/json/' + searchTerm,
+      'https://rcs.philsem.unibas.ch/json-all/',
       {
         headers: httpHeaders,
         reportProgress: true
