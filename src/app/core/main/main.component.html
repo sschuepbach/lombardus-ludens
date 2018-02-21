@@ -1,8 +1,14 @@
-<mat-sidenav-container>
-  <mat-sidenav position="start" mode="side" [opened]="menuOpened" style="min-width:200px;">
-    <app-navigation-menu></app-navigation-menu>
-  </mat-sidenav>
-  <mat-sidenav-content style="min-height:600px; padding-left:10px; background:white;">
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<div *ngIf="!searching">
+  <mat-sidenav-container>
+    <mat-sidenav position="start" mode="side" [opened]="menuOpened" style="min-width:200px;">
+      <app-navigation-menu></app-navigation-menu>
+    </mat-sidenav>
+    <mat-sidenav-content style="min-height:600px; padding-left:10px; background:white;">
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+<div *ngIf="searching">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  <p style="margin-top:0; font-size:85%;">Loading data...</p>
+</div>
