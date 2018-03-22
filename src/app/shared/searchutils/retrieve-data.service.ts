@@ -8,8 +8,8 @@ export class RetrieveDataService {
   constructor(private http: HttpClient) { }
 
   getData() {
-    const httpHeaders = new HttpHeaders({ 'Accept': 'application/json' });
-    httpHeaders.append('Content-Type', 'application/json');
+    const httpHeaders = new HttpHeaders({ 'Accept': 'text' });
+    httpHeaders.append('Content-Type', 'text');
     const httpRequest = new HttpRequest(
       'GET',
       'https://rcs.philsem.unibas.ch/json-all/',
