@@ -6,6 +6,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from '../material.module';
 import { RouterModule } from '@angular/router';
+import {EffectsModule} from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import {reducers, RouterEffects} from '../store';
 
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -22,6 +27,7 @@ import { OpenMenuService } from './open-menu.service';
 import { RouteTrackingService } from '../shared/routing/route-tracking.service';
 import { FiltersModule } from '../filters/filters.module';
 import { NavigationHistoryComponent } from './navigation-history/navigation-history.component';
+import { environment } from '../../environments/environment';
 
 @NgModule({
   imports: [
@@ -34,7 +40,17 @@ import { NavigationHistoryComponent } from './navigation-history/navigation-hist
     NgbModule.forRoot(),
     RouterModule.forRoot([
       { path: '**', component: PageNotFoundComponent }
-    ])
+    ]),
+    StoreModule.forRoot({ ...reducers, router: routerReducer }),
+    StoreRouterConnectingModule.forRoot({
+      stateKey: 'router'
+    }),
+    StoreDevtoolsModule.instrument({
+      name: 'lombardusLudens DevTools',
+      logOnly: environment.production
+    }),
+    EffectsModule.forRoot([ RouterEffects ])
+
   ],
   declarations: [
     HeaderComponent,
