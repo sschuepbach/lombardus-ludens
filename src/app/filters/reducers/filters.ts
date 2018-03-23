@@ -1,4 +1,4 @@
-import { FilterActions, UPDATE_AFFILIATION, UPDATE_PERIOD, UPDATE_SEARCHTERM } from '../actions/filters-actions';
+import { FilterActions, UPDATE_AFFILIATION, UPDATE_PERIOD, UPDATE_SEARCHTERM } from '../actions/filters';
 
 export interface PeriodFiltersState {
   f1150: boolean;

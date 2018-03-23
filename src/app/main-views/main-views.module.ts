@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ResultsModule } from '../results/results.module';
-import { FiltersModule } from '../filters/filters.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MaterialModule } from '../material/material.module';
 
@@ -22,10 +21,9 @@ import { DetailViewComponent } from './containers/detail-view';
     NgbModule,
     RouterModule.forChild([
       { path: 'aggregations', component: AggregationsComponent },
-      { path: 'aggregation-matrix', component: AggregationMatrixComponent},
+      { path: 'aggregation-matrix', component: AggregationMatrixComponent },
       { path: 'commentators', component: CommentatorsListComponent },
-      { path: 'detailView/:id', component: DetailViewComponent},
-      { path: '', redirectTo: '/commentators', pathMatch: 'full' }
+      { path: 'detailView/:id', component: DetailViewComponent }
     ])
   ],
   declarations: [

@@ -4,6 +4,7 @@ export const UPDATE_AFFILIATION = '[Filter] Affiliation update';
 export const UPDATE_PERIOD = '[Filter] Period update';
 export const UPDATE_SEARCHTERM = '[Filter] Searchterm update';
 
+// TODO: Move file
 export class AffiliationUpdateAction implements Action {
   readonly type = UPDATE_AFFILIATION;
 
