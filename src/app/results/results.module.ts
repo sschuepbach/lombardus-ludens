@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MaterialModule } from '../material.module';
+import { MaterialModule } from '../material/material.module';
 import { FiltersModule } from '../filters/filters.module';
 
-import { ResultlistComponent } from './resultlist/resultlist.component';
-import { ResultComponent } from './result/result.component';
+import { ResultlistComponent } from './containers/resultlist';
+import { ResultComponent } from './containers/result';
 
 @NgModule({
   imports: [

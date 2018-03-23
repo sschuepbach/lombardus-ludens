@@ -4,7 +4,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MainViewsModule } from '../main-views/main-views.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { MaterialModule } from '../material.module';
+import { MaterialModule } from '../material/material.module';
 import { RouterModule } from '@angular/router';
 import {EffectsModule} from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
@@ -12,22 +12,22 @@ import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import {reducers, RouterEffects} from '../store';
 
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { SearchfieldComponent } from './searchfield/searchfield.component';
-import { RetrieveDataService } from '../shared/searchutils/retrieve-data.service';
-import { ResultStreamerService } from '../shared/searchutils/result-streamer.service';
-import { CachingInterceptorService } from '../shared/cache/caching-interceptor.service';
+import { HeaderComponent } from './containers/header';
+import { FooterComponent } from './components/footer';
+import { RetrieveDataService } from '../shared/services/searchutils/retrieve-data.service';
+import { ResultStreamerService } from '../shared/services/searchutils/result-streamer.service';
+import { CachingInterceptorService } from '../shared/services/cache/caching-interceptor.service';
 import { MapResultToModelService } from '../shared/models/map-result-to-model.service';
-import { HttpCacheService } from '../shared/cache/http-cache.service';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { MainComponent } from './main/main.component';
-import { NavigationMenuComponent } from './navigation-menu/navigation-menu.component';
-import { OpenMenuService } from './open-menu.service';
-import { RouteTrackingService } from '../shared/routing/route-tracking.service';
+import { HttpCacheService } from '../shared/services/cache/http-cache.service';
+import { PageNotFoundComponent } from './components/page-not-found';
+import { MainComponent } from './containers/main';
+import { NavigationMenuComponent } from './containers/navigation-menu';
+import { OpenMenuService } from './services/open-menu.service';
+import { RouteTrackingService } from '../shared/services/routing/route-tracking.service';
 import { FiltersModule } from '../filters/filters.module';
-import { NavigationHistoryComponent } from './navigation-history/navigation-history.component';
+import { NavigationHistoryComponent } from './containers/navigation-history';
 import { environment } from '../../environments/environment';
+import { AppComponent } from './components/app';
 
 @NgModule({
   imports: [
@@ -53,9 +53,9 @@ import { environment } from '../../environments/environment';
 
   ],
   declarations: [
+    AppComponent,
     HeaderComponent,
     FooterComponent,
-    SearchfieldComponent,
     PageNotFoundComponent,
     MainComponent,
     NavigationMenuComponent,
@@ -73,11 +73,6 @@ import { environment } from '../../environments/environment';
       useClass: CachingInterceptorService,
       multi: true
     }
-  ],
-  exports: [
-    FooterComponent,
-    HeaderComponent,
-    MainComponent
   ]
 })
 export class CoreModule {}

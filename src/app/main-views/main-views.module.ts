@@ -3,15 +3,15 @@ import { CommonModule } from '@angular/common';
 import { ResultsModule } from '../results/results.module';
 import { FiltersModule } from '../filters/filters.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { MaterialModule } from '../material.module';
+import { MaterialModule } from '../material/material.module';
 
-import { CommentatorsListComponent } from './commentators-list/commentators-list.component';
-import { AggregationsComponent } from './aggregations/aggregations.component';
+import { CommentatorsListComponent } from './components/commentators-list';
+import { AggregationsComponent } from './containers/aggregations';
 import { RouterModule } from '@angular/router';
-import { AggregationMatrixComponent } from './aggregation-matrix/aggregation-matrix.component';
+import { AggregationMatrixComponent } from './containers/aggregation-matrix';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatrixComponent } from './matrix/matrix.component';
-import { DetailViewComponent } from './detail-view/detail-view.component';
+import { MatrixComponent } from './containers/matrix';
+import { DetailViewComponent } from './containers/detail-view';
 
 @NgModule({
   imports: [

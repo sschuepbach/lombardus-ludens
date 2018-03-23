@@ -1,6 +1,0 @@
-<p *ngIf="numberOfResults" style="color:#888;">Number of Results: {{numberOfResults}}</p>
-<div>
-  <div *ngFor="let commentator of results; trackBy: trackByOid;" style="margin-bottom:0;">
-    <app-result [commentator]="commentator"></app-result>
-  </div>
-</div>

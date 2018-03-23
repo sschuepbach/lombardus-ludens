@@ -3,13 +3,10 @@ import { NgModule } from '@angular/core';
 import { CoreModule } from './core/core.module';
 import 'hammerjs';
 
-import { AppComponent } from './app.component';
+import { AppComponent } from './core/components/app';
 
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
   imports: [
     BrowserModule,
     CoreModule
