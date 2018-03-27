@@ -8,11 +8,12 @@ import { RouterModule } from '@angular/router';
 import { routes } from './routes';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StoreModule } from '@ngrx/store';
-import { routerReducer, RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store';
+import { RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { CustomRouterStateSerializer } from './shared/utils';
+import { metaReducers, reducers } from './reducers';
 
 
 @NgModule({
@@ -20,9 +21,8 @@ import { CustomRouterStateSerializer } from './shared/utils';
     BrowserModule,
     CoreModule,
     NgbModule.forRoot(),
-    RouterModule.forRoot(routes, {useHash: true}),
-    // FIXME: Implement root reducer in reducers/index.ts (see example app)
-    // StoreModule.forRoot(reducers, {metaReducers}),
+    RouterModule.forRoot(routes, { useHash: true }),
+    StoreModule.forRoot(reducers, { metaReducers }),
     StoreRouterConnectingModule.forRoot({
       stateKey: 'router'
     }),
@@ -33,7 +33,7 @@ import { CustomRouterStateSerializer } from './shared/utils';
     EffectsModule.forRoot([])
   ],
   providers: [
-    {provide: RouterStateSerializer, useClass: CustomRouterStateSerializer}
+    { provide: RouterStateSerializer, useClass: CustomRouterStateSerializer }
   ],
   bootstrap: [ AppComponent ]
 })

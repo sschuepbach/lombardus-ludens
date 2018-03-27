@@ -2,7 +2,7 @@
   <div style="margin: 10px 7px 20px;">
     <div style="display:flex;">
       <div style="margin-right:20px;">
-        <button mat-icon-button (click)="menuOpener.toggleMenu()">
+        <button mat-icon-button (click)="showSidenav ? closeSidenav() : openSidenav()">
           <mat-icon>menu</mat-icon>
         </button>
       </div>

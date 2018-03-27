@@ -1,27 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-import { OpenMenuService } from '../services/open-menu.service';
+import { Component } from '@angular/core';
 import { ResultStreamerService } from '../../shared/services/searchutils/result-streamer.service';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
+
+import * as fromRoot from '../../reducers';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.html'
 })
-export class MainComponent implements OnInit {
+export class MainComponent {
 
-  menuOpened = false;
   searching = true;
+  private showSidenav$: Observable<any>;
 
-  constructor(
-    private store: Store<fromRoot.State>,
-    private menuOpener: OpenMenuService,
+  constructor(private store: Store<fromRoot.State>,
               rs: ResultStreamerService) {
-
-    menuOpener.toggleMenuStream$.subscribe((x: boolean) => this.menuOpened = x);
+    this.showSidenav$ = this.store.pipe(select(fromRoot.getShowSidenav));
     rs.searchingStateStream$.subscribe(searching => this.searching = searching);
-  }
-
-  ngOnInit() {
   }
 
 }

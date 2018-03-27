@@ -4,7 +4,6 @@ import { MainViewsModule } from '../main-views/main-views.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from '../material/material.module';
-import { reducers, RouterEffects } from '../store';
 
 import { HeaderComponent } from './containers/header';
 import { FooterComponent } from './components/footer';
@@ -16,11 +15,11 @@ import { HttpCacheService } from '../shared/services/cache/http-cache.service';
 import { PageNotFoundComponent } from './components/page-not-found';
 import { MainComponent } from './containers/main';
 import { NavigationMenuComponent } from './containers/navigation-menu';
-import { OpenMenuService } from './services/open-menu.service';
 import { RouteTrackingService } from '../shared/services/routing/route-tracking.service';
 import { FiltersModule } from '../filters/filters.module';
 import { NavigationHistoryComponent } from './containers/navigation-history';
 import { AppComponent } from './components/app';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -29,8 +28,8 @@ import { AppComponent } from './components/app';
     MainViewsModule,
     FiltersModule,
     ReactiveFormsModule,
-    MaterialModule
-
+    MaterialModule,
+    RouterModule
   ],
   declarations: [
     AppComponent,
@@ -46,7 +45,6 @@ import { AppComponent } from './components/app';
     MapResultToModelService,
     ResultStreamerService,
     RetrieveDataService,
-    OpenMenuService,
     RouteTrackingService,
     {
       provide: HTTP_INTERCEPTORS,
