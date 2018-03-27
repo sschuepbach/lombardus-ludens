@@ -17,6 +17,7 @@ export class MainComponent {
   constructor(private store: Store<fromRoot.State>,
               rs: ResultStreamerService) {
     this.showSidenav$ = this.store.pipe(select(fromRoot.getShowSidenav));
+    // TODO: Replace with effects / reducers
     rs.searchingStateStream$.subscribe(searching => this.searching = searching);
   }
 

@@ -1,8 +1,8 @@
 <div id="menu" style="display:flex; flex-direction: column;">
   <h4>Views</h4>
-  <a [routerLink]="[createLink('/commentators'), routeParams]" class="menuElement">Commentators</a>
-  <a [routerLink]="[createLink('/aggregations'), routeParams]" class="menuElement">Aggregations</a>
-  <a [routerLink]="[createLink('/aggregation-matrix'), routeParams]" class="menuElement">Aggregation matrix</a>
+  <a [routerLink]="['/commentators/', routeParams$ | async]" class="menuElement">Commentators</a>
+  <a [routerLink]="['/aggregations/', routeParams$ | async]" class="menuElement">Aggregations</a>
+  <a [routerLink]="['/aggregation-matrix/', routeParams$ | async]" class="menuElement">Aggregation matrix</a>
 </div>
 <div id="filters">
   <h4>Filters</h4>

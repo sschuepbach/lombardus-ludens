@@ -1,4 +1,4 @@
-import { FilterActions, UPDATE_AFFILIATION, UPDATE_PERIOD, UPDATE_SEARCHTERM } from '../actions/filters';
+import { FacetsActions, ADD_AFFILIATION, ADD_PERIOD, UPDATE_SEARCHTERM } from '../actions/facets-update';
 
 export interface PeriodFiltersState {
   f1150: boolean;
@@ -66,24 +66,27 @@ const initialFiltersState: FiltersState = {
   }
 };
 
-export function filterReducer(state: FiltersState = initialFiltersState, action: FilterActions): FiltersState {
+export function filterReducer(state: FiltersState = initialFiltersState, action: FacetsActions): FiltersState {
   switch (action.type) {
 
-    case UPDATE_AFFILIATION: {
-      return {
-        ...state,
-        period: action.payload.period
-      };
-    }
-
-    case UPDATE_PERIOD: {
+    case ADD_AFFILIATION: {
+      // noinspection TypeScriptUnresolvedVariable
       return {
         ...state,
         affiliation: action.payload.affiliation
       };
     }
 
+    case ADD_PERIOD: {
+      // noinspection TypeScriptUnresolvedVariable
+      return {
+        ...state,
+        period: action.payload.period
+      };
+    }
+
     case UPDATE_SEARCHTERM: {
+      // noinspection TypeScriptUnresolvedVariable
       return {
         ...state,
         searchTerm: action.payload.searchTerm
