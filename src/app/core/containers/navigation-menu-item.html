@@ -1,0 +1,5 @@
+  <h5 [ngStyle]="{'margin': showItem ? '10px' : '0'}" (click)="toggleShowItem()" class="expandable">
+    <mat-icon class="small-icon">{{showItem ? 'arrow_drop_up' : 'arrow_drop_down'}}</mat-icon>
+    Affiliations
+  </h5>
+  <ng-content *ngIf="showItem"></ng-content>

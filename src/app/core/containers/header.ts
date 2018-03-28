@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
-import * as fromRoot from '../../reducers';
-import * as layout from '../actions/layout';
-import { select, Store } from '@ngrx/store';
+import * as fromLayout from '../reducers';
+import * as layout from '../actions/sidenav';
+import {select, Store} from '@ngrx/store';
 
 @Component({
   selector: 'app-header',
@@ -11,8 +11,8 @@ import { select, Store } from '@ngrx/store';
 export class HeaderComponent {
   showSidenav: boolean;
 
-  constructor(private store: Store<fromRoot.State>) {
-    this.store.pipe(select(fromRoot.getShowSidenav)).subscribe(x => this.showSidenav = x);
+  constructor(private store: Store<fromLayout.State>) {
+    this.store.pipe(select(fromLayout.getShowSidenav)).subscribe(x => this.showSidenav = x);
   }
 
   closeSidenav() {

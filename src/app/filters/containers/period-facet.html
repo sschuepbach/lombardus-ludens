@@ -1,0 +1,9 @@
+<div formGroupName="periods" *ngIf="closedFilterView('periods')">
+  <ul>
+    <li *ngFor="let p of serialiseObjectAsArray(periods)">
+      <mat-checkbox [formControlName]="p.key" (change)="setPostPristineFilter('periods', p.key)">
+        {{periodsMetadata[p.key].title}} ({{periodsMetadata[p.key].count}})
+      </mat-checkbox>
+    </li>
+  </ul>
+</div>

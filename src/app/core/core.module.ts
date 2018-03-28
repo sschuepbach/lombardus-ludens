@@ -20,6 +20,7 @@ import { FiltersModule } from '../filters/filters.module';
 import { NavigationHistoryComponent } from './containers/navigation-history';
 import { AppComponent } from './components/app';
 import { RouterModule } from '@angular/router';
+import { NavigationMenuItemComponent } from './containers/navigation-menu-item';
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { RouterModule } from '@angular/router';
     PageNotFoundComponent,
     MainComponent,
     NavigationMenuComponent,
-    NavigationHistoryComponent
+    NavigationHistoryComponent,
+    NavigationMenuItemComponent
   ],
   providers: [
     HttpCacheService,

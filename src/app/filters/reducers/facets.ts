@@ -1,4 +1,4 @@
-import { FacetsActions, ADD_AFFILIATION, ADD_PERIOD, UPDATE_SEARCHTERM } from '../actions/facets-update';
+import {FacetsActions, SET_AFFILIATION, SET_PERIOD} from '../actions/facets';
 
 export interface PeriodFiltersState {
   f1150: boolean;
@@ -29,14 +29,12 @@ export interface AffiliationFiltersState {
   none: boolean;
 }
 
-export interface FiltersState {
+export interface State {
   period: PeriodFiltersState;
   affiliation: AffiliationFiltersState;
-  searchTerm: string;
 }
 
-const initialFiltersState: FiltersState = {
-  searchTerm: '',
+const initialState: State = {
   period: {
     f1150: true,
     f1250: true,
@@ -66,14 +64,24 @@ const initialFiltersState: FiltersState = {
   }
 };
 
-export function filterReducer(state: FiltersState = initialFiltersState, action: FacetsActions): FiltersState {
+export function reducer(state: State = initialState, action: FacetsActions): State {
   switch (action.type) {
 
     case ADD_AFFILIATION: {
       // noinspection TypeScriptUnresolvedVariable
       return {
         ...state,
-        affiliation: action.payload.affiliation
+        affiliation: Object.keys(state.affiliation)
+          .map(x => x === action.payload.affiliation ? {x: true} : {x: state.affiliation[x]})
+      };
+    }
+
+    case REMOVE_AFFILIATION: {
+      // noinspection TypeScriptUnresolvedVariable
+      return {
+        ...state,
+        affiliation: Object.keys(state.affiliation)
+          .map(x => x === action.payload.affiliation ? {x: false} : {x: state.affiliation[x]})
       };
     }
 
@@ -81,15 +89,17 @@ export function filterReducer(state: FiltersState = initialFiltersState, action:
       // noinspection TypeScriptUnresolvedVariable
       return {
         ...state,
-        period: action.payload.period
+        period: Object.keys(state.period)
+          .map(x => x === action.payload.period ? {x: true} : {x: state.period[x]})
       };
     }
 
-    case UPDATE_SEARCHTERM: {
+    case REMOVE_PERIOD: {
       // noinspection TypeScriptUnresolvedVariable
       return {
         ...state,
-        searchTerm: action.payload.searchTerm
+        period: Object.keys(state.period)
+          .map(x => x === action.payload.period ? {x: false} : {x: state.period[x]})
       };
     }
 

@@ -10,5 +10,10 @@ export class FacetsRouteEffects {
 
   @Effect()
   paramsUpdate$: Observable<Action> = this.actions$.ofType('ROUTER_NAVIGATION')
-    .filter((x: any) => x.payload.)
+    .switchMap((action: any) => {
+      const rS = action.payload.routerState;
+      const searchParams = rS.root.firstChild.params;
+      return
+    })
+    .filter((x: any) => x.payload.event.urlAfterRedirects.)
 }

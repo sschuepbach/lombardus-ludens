@@ -14,7 +14,7 @@ export class NavigationMenuComponent {
   routeParams$: Observable<Params>;
 
   constructor(private route: ActivatedRoute, private store: Store<fromRoot.State>) {
-   // store.pipe(select(fromRoot.))
+   // store.pipe(select(fromLayout.))
     this.routeParams$ = route.params;
     route.params.subscribe(x => console.log(x));
     /*    rts.routeParamsStream$.subscribe(params =>

@@ -1,0 +1,9 @@
+<div formGroupName="affiliations" *ngIf="closedFilterView('affiliations')">
+  <ul>
+    <li *ngFor="let a of serialiseObjectAsArray(affiliations)">
+      <mat-checkbox [formControlName]="a.key" (change)="setPostPristineFilter('affiliations', a.key)">
+        {{affiliationsMetadata[a.key].title}} ({{affiliationsMetadata[a.key].count}})
+      </mat-checkbox>
+    </li>
+  </ul>
+</div>
