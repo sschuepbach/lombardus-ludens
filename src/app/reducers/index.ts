@@ -1,8 +1,6 @@
-import { ActionReducer, ActionReducerMap, createFeatureSelector, createSelector, MetaReducer } from '@ngrx/store';
+import { ActionReducer, ActionReducerMap, MetaReducer } from '@ngrx/store';
 import { RouterStateUrl } from '../shared/utils';
 import * as fromRouter from '@ngrx/router-store';
-
-import * as fromLayout from '../core/reducers/sidenav';
 import { environment } from '../../environments/environment';
 
 export interface State {
